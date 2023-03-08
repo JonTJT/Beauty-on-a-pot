@@ -31,8 +31,7 @@ def setLogfile():
     print()
     return
 
-def finalise():
-
+def generate():
     x = 1
     while (x != 0):
         print("Server: " + fn.server)
@@ -81,7 +80,7 @@ if __name__ == "__main__":
         elif option == 3:
             setLogfile() 
         elif option == 4:
-            finalise() 
+            generate() 
         elif option == 5:
             x = 0
         else:
