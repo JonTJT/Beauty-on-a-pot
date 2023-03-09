@@ -12,8 +12,16 @@
 4. Restart the php processor <br>
    `sudo systemctl restart php8.2-fpm`
 5. Configure Nginx to use the PHP processor by copying and replacing the `default` file in the `nginx_test_env` folder into `/etc/nginx/sites-available/`
-6. Verify the configuration file has no syntax errors <br>
+6. Change the `server_name` value in the `/etc/nginx/sites-available/default` folder to the IP of your own VM. <br>
+   `sudo nano /etc/nginx/sites-availble/default`
+7. Verify the configuration file has no syntax errors <br>
    `sudo nginx -t`
-7. Copy and replace the `html` in the `nginx_test_env` folder into `/var/www/html`
-8. Reload Nginx and test that the website works. Note that your browser may cache the webpage, and using private browsing is recommended to verify the configurations of the webserver.<br>
+8. Copy and replace the `html` in the `nginx_test_env` folder into `/var/www/html`
+9.  Reload Nginx and test that the website works. Note that your browser may cache the webpage, and using private browsing is recommended to verify the configurations of the webserver.<br>
    `sudo systemctl reload nginx`
+
+
+## Debugging:
+1. 502 Error: Please check that your configuration file `/etc/nginx/sites-available/default` has the correct value for the `server_name` variable
+2. For Ubuntu, the php-fpm version installed is 8.1, therefore for all the steps above, please use php8.1 instead of php8.2. The `/etc/nginx/sites-available/default` file also has to be configured to use php8.1 instead of 8.2: <br>
+   `fastcgi_pass unix:/run/php/php8.2-fpm.sock` to `fastcgi_pass unix:/run/php/php8.1-fpm.sock`
