@@ -3,6 +3,7 @@
 
 server = ""
 folderpath = ""
+generatedPages = {} #{sourcePath/defaultLogin/defaultSearch (key) : type of page (value = either login/search type)}
 logfile = ""
     
 def genFiles():
