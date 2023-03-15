@@ -88,22 +88,14 @@ def generateHoneypotPage(template, sourceFilePath, outputFile):
         # Generate output file first based on template file
         outputfile = generateOutputFile(templateFile, outputFile, sourceFilePath)
 
-        if outputfile:
-            # Extract the main element from the template file
-            templatemain = extractElement(templateFile, 'main')
+        # Extract the main element from the template file
+        templatemain = extractElement(templateFile, 'main')
 
-            if templatemain:
-                # Add main to output file, placed before footer if main is not present.
-                insertOrReplaceElement(outputfile, "main", "header", templatemain)
-
-            else:
-                print(f"Unable to extract main element from {templateFile}.")
-                
-        else:
-            print(f"Unable to generate output file {outputFile}.")
+        # Add main to output file, placed before footer if main is not present.
+        insertOrReplaceElement(outputfile, "main", "header", templatemain)
     
     except IOError:
-        print("(generateAdminLoginPage) Unable to open file.")
+        print("IO Exception: Unable to generate output file.")
 
 if __name__ == '__main__':
     template = "SecretSearchPage.html"
