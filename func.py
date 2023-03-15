@@ -5,9 +5,9 @@ import shutil
 from bs4 import BeautifulSoup
 
 server = ""
-# folderpath = ""
 logfile = ""
 
+# To generate the output file
 def generateOutputFile(template, output, sourceFile=None):
     try:
         if sourceFile:
@@ -21,6 +21,7 @@ def generateOutputFile(template, output, sourceFile=None):
 
     return output
 
+# To extract an HTML element
 def extractElement(htmlFilePath, element):
     try:
         with open(htmlFilePath, 'r', encoding='utf-8') as htmlFile:
@@ -34,6 +35,7 @@ def extractElement(htmlFilePath, element):
     
     return None
 
+# To insert a HTML element, or replace if it already exists.
 def insertOrReplaceElement(outputFilePath, elementToInsertTag, afterElementTag, elementData):
     try:
         # Decode the element data
@@ -76,6 +78,7 @@ def insertOrReplaceElement(outputFilePath, elementToInsertTag, afterElementTag, 
     except IOError:
         print("(insertElement) Unable to open file.")
 
+# All-in-one function to generate the honeypot pages.
 def generateHoneypotPage(template, sourceFilePath, outputFile):
     try:
         # Get the current directory
@@ -90,47 +93,12 @@ def generateHoneypotPage(template, sourceFilePath, outputFile):
         # Generate output file first based on template file
         outputfile = generateOutputFile(templateFile, outputFile, sourceFilePath)
 
-        # Extract the main element from the template file
-        templatemain = extractElement(templateFile, 'main')
-
-        # Add main to output file, placed before footer if main is not present.
-        insertOrReplaceElement(outputfile, "main", "header", templatemain)
-    
-    except IOError:
-        print("IO Exception: Unable to generate output file.")
-    try:
-        # Get the current directory
-        currentDir = os.getcwd()
-
-        # Get the source template
-        templateFile = os.path.join(currentDir, "templates", template)
-
-        # Combine the current directory and the new file name to get the full path of the output file
-        outputFile = os.path.join(currentDir, outputFile)
-
-        # Generate output file first based on template file
-        outputfile = generateOutputFile(templateFile, outputFile, sourceFilePath)
-
-        if outputfile:
+        if sourceFilePath != None:
             # Extract the main element from the template file
             templatemain = extractElement(templateFile, 'main')
 
-            if templatemain:
-                # Add main to output file, placed before footer if main is not present.
-                insertOrReplaceElement(outputfile, "main", "header", templatemain)
-
-            else:
-                print(f"Unable to extract main element from {templateFile}.")
-                
-        else:
-            print(f"Unable to generate output file {outputFile}.")
+            # Add main to output file, placed before footer if main is not present.
+            insertOrReplaceElement(outputfile, "main", "header", templatemain)
     
     except IOError:
-        print("(generateAdminLoginPage) Unable to open file.")
-
-# if __name__ == '__main__':
-#     template = "SecretSearchPage.html"
-#     sourceFilePath = "source.html"
-#     outputFile = "output.html"
-
-#     generateHoneypotPage(template, sourceFilePath, outputFile)
+        print("IO Exception: Unable to generate output file.")

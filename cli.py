@@ -24,7 +24,7 @@ def setServer():
 def addPage():
     print("Type of honeypot page: ")
     print("1) Login Page")
-    print("2) Search Bars")
+    print("2) Search Bar")
     type = int(input("==> "))
     print()
     while (type != 1 and type != 2):
