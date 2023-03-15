@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <h1>Admin Login</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <form id="login_form" class="form_class" action="[Insert login url]" method="post">
+      <div class="form_div">
+        <label>Username:</label>
+        <input class="field_class" name="username" type="text" autofocus>
+        <label>Password:</label>
+        <input id="pass" class="field_class" name="password" type="password">
+        <button class="submit_class" type="submit" form="login_form" onclick="return validarLogin()">Enter</button>
+      </div>
+    </form>
+  </main>
+  <footer>
+    <p>&copy; 2023 My Company. All rights reserved.</p>
+  </footer>
+</body>
+
+</html>
