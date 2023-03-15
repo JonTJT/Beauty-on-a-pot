@@ -17,11 +17,12 @@
    ```
    
 3. Install PHP for processing <br>
-   `sudo apt-get install php libapache2-mod-php php-mcrypt php-mysql`
+   `sudo apt-get install php libapache2-mod-php php-mysql`
    
 4. Configure the apache `dir.conf` file <br>
    `sudo nano /etc/apache2/mods-enabled/dir.conf` <br>
    Look for the `DirectoryIndex` value. It should look like this:
+   
    ```
    <IfModule mod_dir.c>
       DirectoryIndex index.html index.cgi index.pl index.php index.xhtml index.htm
@@ -37,7 +38,7 @@
 5. Verify that the configuration file has no syntax errors: <br>
    `sudo apache2ctl configtest`<br>
    
-6. Copy and replace the `html` in the `apache_test_env` folder into `/var/www/html`
+6. Copy and replace the `html` folder in the `apache_test_env` folder into `/var/www/html`
 
 7.  Restart Apache and test that the website works. Note that your browser may cache the webpage, and using private browsing is recommended to verify the configurations of the webserver.<br>
    `sudo systemctl restart apache2`
