@@ -1,0 +1,135 @@
+[16/Mar/2023:12:00:36.962120 +0800] ZBKUZIyUMyXhF30kPCmDNQAAAAc 192.168.70.1 61550 192.168.70.131 80
+POST /process_login.php HTTP/1.1
+Host: 192.168.70.131
+Connection: keep-alive
+Content-Length: 27
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+Origin: http://192.168.70.131/
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,/;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://192.168.70.131/login.php
+Accept-Encoding: gzip, deflate
+Accept-Language: en-GB,en;q=0.9
+email=asd%40asd.asd&pwd=asd
+|
+
+[16/Mar/2023:12:01:36.962120 +0800] ZBKUZIyUMyXhF30kPCmDNQAAAAc 192.168.70.2 61550 192.168.70.131 80
+POST /process_login.php HTTP/1.1
+Host: 192.168.70.131
+Connection: keep-alive
+Content-Length: 27
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+Origin: http://192.168.70.131/
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,/;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://192.168.70.131/login.php
+Accept-Encoding: gzip, deflate
+Accept-Language: en-GB,en;q=0.9
+email=aaad%40asd.asd&pwd=asd
+|
+
+[16/Mar/2023:12:02:36.962120 +0800] ZBKUZIyUMyXhF30kPCmDNQAAAAc 192.168.70.3 61550 192.168.70.131 80
+POST /process_login.php HTTP/1.1
+Host: 192.168.70.131
+Connection: keep-alive
+Content-Length: 27
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+Origin: http://192.168.70.131/
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,/;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://192.168.70.131/login.php
+Accept-Encoding: gzip, deflate
+Accept-Language: en-GB,en;q=0.9
+email=asd%40asd.asd&pwd=peanut
+|
+
+[16/Mar/2023:12:03:36.962120 +0800] ZBKUZIyUMyXhF30kPCmDNQAAAAc 192.168.70.1 61550 192.168.70.131 80
+POST /process_login.php HTTP/1.1
+Host: 192.168.70.131
+Connection: keep-alive
+Content-Length: 27
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+Origin: http://192.168.70.131/
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,/;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://192.168.70.131/login.php
+Accept-Encoding: gzip, deflate
+Accept-Language: en-GB,en;q=0.9
+email=asd%40mynuts.asd&pwd=testing123
+|
+
+[16/Mar/2023:12:04:36.962120 +0800] ZBKUZIyUMyXhF30kPCmDNQAAAAc 192.168.70.4 61550 192.168.70.131 80
+POST /process_login.php HTTP/1.1
+Host: 192.168.70.131
+Connection: keep-alive
+Content-Length: 27
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+Origin: http://192.168.70.131/
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,/;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://192.168.70.131/login.php
+Accept-Encoding: gzip, deflate
+Accept-Language: en-GB,en;q=0.9
+email=asd%40asd.asd&pwd=asd&debug=true
+|
+
+[16/Mar/2023:12:05:36.962120 +0800] ZBKUZIyUMyXhF30kPCmDNQAAAAc 192.168.70.3 61550 192.168.70.131 80
+POST /process_login.php HTTP/1.1
+Host: 192.168.70.131
+Connection: keep-alive
+Content-Length: 27
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+Origin: http://192.168.70.131/
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,/;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://192.168.70.131/login.php
+Accept-Encoding: gzip, deflate
+Accept-Language: en-GB,en;q=0.9
+email=jontan%40testing.asd&pwd=ict2206
+|
+
+[16/Mar/2023:12:05:38.962120 +0800] ZBKUZIyUMyXhF30kPCmDNQAAAAc 192.168.70.9 61550 192.168.70.131 80
+POST /process_login.php HTTP/1.1
+Host: 192.168.70.131
+Connection: keep-alive
+Content-Length: 27
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+Origin: http://192.168.70.131/
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,/;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://192.168.70.131/login.php
+Accept-Encoding: gzip, deflate
+Accept-Language: en-GB,en;q=0.9
+email=administrator%40admin.com&pwd=iamadministrator
+|
+
+[16/Mar/2023:12:12:36.962120 +0800] ZBKUZIyUMyXhF30kPCmDNQAAAAc 192.168.70.1 61550 192.168.70.131 80
+POST /process_login.php HTTP/1.1
+Host: 192.168.70.131
+Connection: keep-alive
+Content-Length: 27
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+Origin: http://192.168.70.131/
+Content-Type: application/x-www-form-urlencoded
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,/;q=0.8,application/signed-exchange;v=b3;q=0.7
+Referer: http://192.168.70.131/login.php
+Accept-Encoding: gzip, deflate
+Accept-Language: en-GB,en;q=0.9
+email=cmon%40barbie.lesgo&pwd=imabarbiegirlinabarbieworld
+|
