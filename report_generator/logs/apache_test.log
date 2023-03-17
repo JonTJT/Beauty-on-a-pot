@@ -1,0 +1,113 @@
+--9e3f647f-A--
+[17/Mar/2023:22:22:14.959786 +0800] ZBR3lpppAuGlywE2bOkDYgAAAAk 192.168.70.1 55728 192.168.70.132 80
+--9e3f647f-B--
+POST /process_login/process_login.php HTTP/1.1
+Host: 192.168.70.132
+Connection: keep-alive
+Content-Length: 25
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36
+Content-Type: application/x-www-form-urlencoded
+Accept: */*
+Origin: http://192.168.70.132
+Referer: http://192.168.70.132/output.html
+Accept-Encoding: gzip, deflate
+Accept-Language: en-GB,en;q=0.9
+
+--9e3f647f-C--
+username=asd&password=asd
+--9e3f647f-Z--
+
+--6591273f-A--
+[17/Mar/2023:22:22:17.739157 +0800] ZBR3mZppAuGlywE2bOkDYwAAAAk 192.168.70.1 55728 192.168.70.132 80
+--6591273f-B--
+POST /process_login/process_login.php HTTP/1.1
+Host: 192.168.70.132
+Connection: keep-alive
+Content-Length: 28
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36
+Content-Type: application/x-www-form-urlencoded
+Accept: */*
+Origin: http://192.168.70.132
+Referer: http://192.168.70.132/output.html
+Accept-Encoding: gzip, deflate
+Accept-Language: en-GB,en;q=0.9
+
+--6591273f-C--
+username=select&password=asd
+--6591273f-Z--
+
+--70c83e39-A--
+[17/Mar/2023:22:22:18.130561 +0800] ZBR3mpppAuGlywE2bOkDZAAAAAk 192.168.70.1 55728 192.168.70.132 80
+--70c83e39-B--
+POST /process_login/process_login.php HTTP/1.1
+Host: 192.168.70.132
+Connection: keep-alive
+Content-Length: 28
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36
+Content-Type: application/x-www-form-urlencoded
+Accept: */*
+Origin: http://192.168.70.132
+Referer: http://192.168.70.132/output.html
+Accept-Encoding: gzip, deflate
+Accept-Language: en-GB,en;q=0.9
+
+--70c83e39-C--
+username=select&password=asd
+--70c83e39-Z--
+
+--9e3f647f-A--
+[17/Mar/2023:22:22:28.101922 +0800] ZBR3pAKr2pjHgov_j1PmOgAAAAo 192.168.70.1 55738 192.168.70.132 80
+--9e3f647f-B--
+POST /process_login/process_login.php HTTP/1.1
+Host: 192.168.70.132
+Connection: keep-alive
+Content-Length: 30
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36
+Content-Type: application/x-www-form-urlencoded
+Accept: */*
+Origin: http://192.168.70.132
+Referer: http://192.168.70.132/output.html
+Accept-Encoding: gzip, deflate
+Accept-Language: en-GB,en;q=0.9
+
+--9e3f647f-C--
+username=<script>&password=asd
+--9e3f647f-Z--
+
+--9e3f647f-A--
+[17/Mar/2023:22:22:35.476297 +0800] ZBR3q_v-Gr4iO5pFjiTwmQAAAAs 192.168.70.1 55743 192.168.70.132 80
+--9e3f647f-B--
+POST /process_login/process_login.php HTTP/1.1
+Host: 192.168.70.132
+Connection: keep-alive
+Content-Length: 39
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36
+Content-Type: application/x-www-form-urlencoded
+Accept: */*
+Origin: http://192.168.70.132
+Referer: http://192.168.70.132/output.html
+Accept-Encoding: gzip, deflate
+Accept-Language: en-GB,en;q=0.9
+
+--9e3f647f-C--
+username=<script></script>&password=asd
+--9e3f647f-Z--
+
+--6591273f-A--
+[17/Mar/2023:22:22:37.120451 +0800] ZBR3rfv-Gr4iO5pFjiTwmgAAAAs 192.168.70.1 55743 192.168.70.132 80
+--6591273f-B--
+POST /process_login/process_login.php HTTP/1.1
+Host: 192.168.70.132
+Connection: keep-alive
+Content-Length: 42
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36
+Content-Type: application/x-www-form-urlencoded
+Accept: */*
+Origin: http://192.168.70.132
+Referer: http://192.168.70.132/output.html
+Accept-Encoding: gzip, deflate
+Accept-Language: en-GB,en;q=0.9
+
+--6591273f-C--
+username=<script>asd</script>&password=asd
+--6591273f-Z--
