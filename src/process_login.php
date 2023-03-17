@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $enteredstring = $username . $password;
 
   // Check for SQL injection attempts
-  $sql_injection_words = array('insert', 'select', 'from', 'update', 'delete',';');
+  $sql_injection_words = array('insert', 'select', 'from', 'update', 'delete');
   foreach ($sql_injection_words as $word) {
     if (stripos($enteredstring, $word) !== false) {
       // Set 400 Bad Request status code and send error message
@@ -43,15 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Set 400 Bad Request status code and send error message
     http_response_code(401);
     echo '<script>prompt();</script>';
-    exit();
-  }
-
-  // Check for XSS attacks, specifically script
-  if (stripos($enteredstring, '<script>') !== false || 
-      stripos($enteredstring, '</script>') !== false) {
-    // Set 400 Bad Request status code and send error message
-    http_response_code(401);
-    echo '<script></script>';
     exit();
   }
 

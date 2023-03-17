@@ -9,12 +9,9 @@ $search_error_messages = [
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   // Sanitize input
-  $search_query = filter_input(INPUT_GET, 'search', FILTER_SANITIZE_STRING);
-
-  $entered_string = $search_query;
-
+  $entered_string = filter_input(INPUT_GET, 'search', FILTER_SANITIZE_STRING);
   // Check for SQL injection attempts
-  $sql_injection_words = array('insert', 'select', 'from', 'update', 'delete', ';');
+  $sql_injection_words = array('insert', 'select', 'from', 'update', 'delete');
   foreach ($sql_injection_words as $word) {
     if (stripos($entered_string, $word) !== false) {
       // Set 401 error code
@@ -40,14 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         stripos($entered_string, 'prompt(') !== false) {
       http_response_code(401);
       echo '<script>prompt();</script>';
-      exit();
-    }
-  
-    // Check for XSS attacks, specifically script
-    if (stripos($entered_string, '<script>') !== false || 
-        stripos($entered_string, '</script>') !== false) {
-      http_response_code(401);
-      echo '<script></script>';
       exit();
     }
 
