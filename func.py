@@ -7,9 +7,18 @@ from bs4 import BeautifulSoup
 server = ""
 logfile = ""
 
-# To generate the output file
+# To generate the output files
 def generateOutputFile(template, output, sourceFile=None):
+    outputDirectory = os.path.dirname(output)
     try:
+        # Check if admin login page or admin search page selected
+        if "AdminLoginPageTemplate" in template:
+            # Copy out javascript file and php file
+            shutil.copy2("./src/login.js", outputDirectory+"/login.js")
+            shutil.copy2("./src/process_login.php", outputDirectory+"/process_login.php")
+        elif "SecretSearchPage" in template:
+            shutil.copy2("./src/search.js", outputDirectory+"/search.js")
+            shutil.copy2("./src/process_search.php", outputDirectory+"/process_search.php")
         if sourceFile:
             shutil.copy2(sourceFile, output)
         else:
