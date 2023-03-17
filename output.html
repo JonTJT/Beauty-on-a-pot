@@ -18,10 +18,15 @@
 </nav>
 </header>
 <main>
-<form action="search.php" method="get">
-<input name="search" placeholder="Search" type="text"/>
-<button type="submit">Search</button>
-</form>
+    <form action="#process_login.php" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"><br><br>
+        <input type="submit" value="Login">
+    </form>
+    <div id="error-message"></div>
+    <script src="login.js"></script>
 </main>
 <footer>
 <p>© 2023 My Company. All rights reserved.</p>
