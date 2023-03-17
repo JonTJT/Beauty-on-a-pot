@@ -7,14 +7,7 @@
 2. Change the `ServerName` variable in the `/etc/apache2/apache2.conf` file: <br>
    `ServerName your_ip_address` <br>
    
-   If there is no ServerName variable, add it to the bottom of the configuration file
-   
-   If there are no syntax errors, you should see this output: <br>
-   
-   ```
-   Output
-   Syntax Ok
-   ```
+   If there is no ServerName variable, add it to the bottom of the configuration file.
    
 3. Install PHP for processing <br>
    `sudo apt-get install php libapache2-mod-php php-mysql`
@@ -37,6 +30,13 @@
    
 5. Verify that the configuration file has no syntax errors: <br>
    `sudo apache2ctl configtest`<br>
+   
+   If there are no syntax errors, you should see this output: <br>
+   
+   ```
+   Output
+   Syntax Ok
+   ```
    
 6. Copy and replace the `html` folder in the `apache_test_env` folder into `/var/www/html`
 
