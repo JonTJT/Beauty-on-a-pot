@@ -3,13 +3,15 @@
 
 <body>
     <main>
-        <form action="#" method="POST">
+        <form action="process_login.php" method="POST">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username"><br><br>
             <label for="password">Password:</label>
             <input type="password" id="password" name="password"><br><br>
             <input type="submit" value="Login">
         </form>
+        <div id="error-message"></div>
+        <script src="login.js"></script>
     </main>
 </body>
 
