@@ -36,25 +36,25 @@ def generate():
         return
 
     source = srcfld.get()
-    root_ext = ""
+    outputFileName = "default.html"
     if srcIntVar.get() == 1:
         source = None
-        root_ext = os.path.splitext("default.html")
     else:
         if not os.path.exists(source):
             print("ERROR: Source file not found.")
             insertConsole("ERROR: Source file not found.")
             return
-        root_ext = os.path.splitext(source)
+        outputFileName = os.path.basename(source)
 
+    curr_dir = os.getcwd()
+    
     template = ""
-    outputFile = ""
     if templateClicked.get() == "Login":
         template = "AdminLoginPageTemplate.html"
-        outputFile = root_ext[0] + "_AdminLoginHoneypot" + root_ext[1]
+        outputFile = curr_dir + "/AdminLoginHoneypot_" + outputFileName 
     elif templateClicked.get() == "Search":
         template = "SecretSearchPage.html"
-        outputFile = root_ext[0] + "_SearchHoneypot" + root_ext[1]
+        outputFile = curr_dir + "/SearchHoneypot_" + outputFileName
     
     fn.generateHoneypotPage(template, source, outputFile)
 
