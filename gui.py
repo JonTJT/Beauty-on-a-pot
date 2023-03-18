@@ -15,11 +15,9 @@ def generateReport():
     try:
         logfile = logfld.get() + "/honeypot.log"
         if clicked.get() == "Apache":
-            csv_file = logfld.get() + "/reports/" + str(int(time.time())) + ".csv"
-            fn.ApacheGenerateReport(logfile, csv_file)
+            fn.ApacheGenerateReport(logfile)
         elif clicked.get() == "Nginx":
-            csv_file = logfld.get() + "/reports/" + str(int(time.time())) + ".csv"
-            fn.NginxGenerateReport(logfile, csv_file)
+            fn.NginxGenerateReport(logfile)
     except IOError:
         insertConsole("ERROR: Unable to generate report csv file.")
 
