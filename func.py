@@ -36,9 +36,10 @@ def generateOutputFile(template, output, sourceFile=None):
         else:
             shutil.copy2(template, output)
 
-    except IOError:
-        print("(generateOutputFile) Unable to open file.")
-        return None
+    except Exception as e:
+        consoleReturn = f"ERROR: An error has occured. {e}\n"
+        print(consoleReturn)
+        insertConsole(consoleReturn)
 
     return output
 
@@ -51,8 +52,10 @@ def extractElement(htmlFilePath, element):
             if mainElement:
                 return str(mainElement)
 
-    except IOError:
-        print(f"Unable to open file {htmlFilePath}.")
+    except Exception as e:
+        consoleReturn = f"ERROR: An error has occured while extracting HTML element. {e}\n"
+        print(consoleReturn)
+        insertConsole(consoleReturn)
     
     return None
 
@@ -96,8 +99,10 @@ def insertOrReplaceElement(outputFilePath, elementToInsertTag, afterElementTag, 
 
             print(f"Element '{elementToInsertTag}' added to '{outputFilePath}'")
             
-    except IOError:
-        print("(insertElement) Unable to open file.")
+    except Exception as e:
+        consoleReturn = f"ERROR: An error has occured with trying to insert/replace HTML element. {e}\n"
+        print(consoleReturn)
+        insertConsole(consoleReturn)
 
 # All-in-one function to generate the honeypot pages.
 def generateHoneypotPage(template, sourceFilePath, outputFile):
@@ -144,8 +149,8 @@ def generateHoneypotPage(template, sourceFilePath, outputFile):
         elif server == "Nginx":
             nginx_log_setup(logfile)
 
-    except IOError:
-        consoleReturn = "IO Exception: Unable to generate output honeypot files."
+    except Exception as e:
+        consoleReturn = f"ERROR: An error has occured with the honeypot generation process. {e}\n"
         print(consoleReturn)
         insertConsole(consoleReturn)
 
