@@ -373,7 +373,7 @@ def nginx_log_setup(log_path):
             fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
             fastcgi_param PATH_INFO $fastcgi_path_info;
 
-            access_log {log_path} log_req;
+            access_log {log_path + '/honeypot.log'} log_req;
         }}
 
         location = /process_search.php {{
@@ -382,7 +382,7 @@ def nginx_log_setup(log_path):
             fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
             fastcgi_param PATH_INFO $fastcgi_path_info;
 
-            access_log {log_path} log_req;
+            access_log {log_path + '/honeypot.log'} log_req;
         }}
     '''
 
