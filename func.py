@@ -4,8 +4,8 @@ import os
 import shutil
 from bs4 import BeautifulSoup
 
-server = ""
-logfile = ""
+server = "Not selected"
+logfile = "Not selected"
 
 # To generate the output files
 def generateOutputFile(template, output, sourceFile=None):

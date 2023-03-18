@@ -92,9 +92,11 @@ if __name__ == "__main__":
     
     x = 1
     while (x != 0):
+        print("Selected web server environment: " + fn.server)
+        print("Selected log filepath: " + fn.logfile)
         print("Generate the honeypot webpages by configuring the correct settings in the options:")
-        print("1) Configure server environment")
-        print("2) Configure logs filepath")
+        print("1) Specify server environment")
+        print("2) Specify logs filepath")
         print("3) Generate Honeypot Pages")
         print("4) Exit")
         

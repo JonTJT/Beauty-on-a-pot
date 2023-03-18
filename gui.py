@@ -71,7 +71,7 @@ if __name__ == "__main__":
     bottomRightFrame.place(relwidth=0.45, relheight=0.3, rely=0.4, relx=0.50)
 
     # server = OptionMenu()
-    serverlbl = ttk.Label(topLeftFrame,text="Select web server:",font=('Courier',13,'bold'))
+    serverlbl = ttk.Label(topLeftFrame,text="Select Web Server:",font=('Courier',13,'bold'))
     serverlbl.grid(row = 0, column = 0, sticky='ew')
     options = ["Apache", "Nginx"]
     clicked = tk.StringVar()
@@ -80,7 +80,7 @@ if __name__ == "__main__":
     serverfld.grid(row = 0, column = 1, sticky='ew')
 
     # logfile = Entry()
-    loglbl = ttk.Label(bottomLeftFrame,text="Logfile Folderpath:",font=('Courier',13,'bold'))
+    loglbl = ttk.Label(bottomLeftFrame,text="Select Logfile Folderpath:",font=('Courier',13,'bold'))
     loglbl.grid(row = 0, column = 0)
     logfld = tk.Entry(bottomLeftFrame, text="")
     logfld.grid(row = 1, column = 0, sticky='ew')
