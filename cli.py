@@ -27,7 +27,6 @@ def addPage():
     print("Type of honeypot page: ")
     print("1) Login Page")
     print("2) Search Bar")
-    type = int(input("==> "))
     print()
     while True:
         type = int(input("==> "))
