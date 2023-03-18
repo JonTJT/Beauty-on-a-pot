@@ -138,9 +138,9 @@ def generateHoneypotPage(template, sourceFilePath, outputFile):
         insertConsole(f"Setting up logging for {server}...")
 
         if server == "Apache":
-            apache_log_setup()
+            apache_log_setup(logfile)
         elif server == "Nginx":
-            nginx_log_setup()
+            nginx_log_setup(logfile)
 
     except IOError:
         consoleReturn = "IO Exception: Unable to generate output honeypot files."
@@ -316,17 +316,17 @@ def update_security2_conf():
 def restart_apache2():
     subprocess.run(['sudo', 'systemctl', 'restart', 'apache2'])
 
-def apache_log_setup(sec_audit_log_path):
+def apache_log_setup(log_path):
     # Insert logging code for apache
     
     install_modsecurity()
     configure_apache2()
     copy_modsecurity_conf()
-    create_honeypot_rules(sec_audit_log_path)
+    create_honeypot_rules(log_path)
     remove_crs_folder()
     update_security2_conf()
-    print(f"Logging successfully configured. Logging file path has been set to: {sec_audit_log_path + '/honeypot.log'}")
-    insertConsole(f"Logging successfully configured. Logging file path has been set to: {sec_audit_log_path + '/honeypot.log'}")
+    print(f"Logging successfully configured. Logging file path has been set to: {log_path + '/honeypot.log'}")
+    insertConsole(f"Logging successfully configured. Logging file path has been set to: {log_path + '/honeypot.log'}")
 
     print(f"Restarting {server} server.... Please wait")
     insertConsole(f"Restarting {server} server.... Please wait")
@@ -338,7 +338,7 @@ def apache_log_setup(sec_audit_log_path):
     return None
 
 # For NGINX Log installation
-def nginx_log_setup():
+def nginx_log_setup(log_path):
     # Set expected php path to check for
     PHP_DIR = '/etc/php/8.2/fpm'
 
@@ -349,11 +349,11 @@ def nginx_log_setup():
     LOG_FORMAT_STRING = '''    log_format log_req escape=none '[$time_local] $remote_addr $remote_port $server_addr $server_port'\n    '\\n$request$req_header$request_body\\n|\\n';\n\n'''
 
     # Define the  string to insert for lua processing
-    LUA_STRING = '''
+    LUA_STRING = f'''
         lua_need_request_body on;
 
         set $req_header "\\n";
-        header_filter_by_lua_block {
+        header_filter_by_lua_block {{
         local h = ngx.req.get_headers()
         for k, v in pairs(h) do
                 if (type(v) == "table") then
@@ -362,27 +362,27 @@ def nginx_log_setup():
                 ngx.var.req_header = ngx.var.req_header .. k.."="..v.."\\n"
                 end
         end
-        }\n\n'''
+        }}\n\n'''
 
     # Define the string to insert for location
-    LOCATION_STRING = '''
-        location = /process_login.php {
+    LOCATION_STRING = f'''
+        location = /process_login.php {{
             fastcgi_pass unix:/run/php/php8.2-fpm.sock;
             include fastcgi_params;
             fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
             fastcgi_param PATH_INFO $fastcgi_path_info;
 
-            access_log logs/honeypot.log log_req;
-        }
+            access_log {log_path} log_req;
+        }}
 
-        location = /process_search.php {
+        location = /process_search.php {{
             fastcgi_pass unix:/run/php/php8.2-fpm.sock;
             include fastcgi_params;
             fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
             fastcgi_param PATH_INFO $fastcgi_path_info;
 
-            access_log logs/honeypot.log log_req;
-        }
+            access_log {log_path} log_req;
+        }}
     '''
 
     # Check if php version is correct
