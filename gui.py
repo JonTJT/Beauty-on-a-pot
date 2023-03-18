@@ -4,10 +4,46 @@ import tkinter as tk
 from tkinter import font  as tkfont
 from tkinter import Message, Widget, filedialog , messagebox , ttk
 from tkinter.constants import BOTH, BOTTOM, CENTER, DISABLED, FALSE, LEFT, NORMAL, RIGHT, TRUE, VERTICAL, X, Y, END
+import time
+
+def generateReport():
+    try:
+        logfile = logfld.get() + "/honeypot.log"
+        if os.path.exists(logfile):
+            if fn.server == "Apache":
+                csv_file = fn.logfile + "/reports/" + int(time.time()) + ".csv"
+                fn.ApacheGenerateReport(logfile, csv_file)
+                print(f"Data successfully written to {csv_file}")
+            elif fn.server == "Nginx":
+                csv_file = fn.logfile + "/reports/" + int(time.time()) + ".csv"
+                fn.NginxGenerateReport(logfile, csv_file)
+                print(f"Data successfully written to {csv_file}")
+        else: 
+            textconsole["state"] = NORMAL
+            textconsole.insert(END, "ERROR: Unable to open logfile" + "\n")
+            textconsole["state"] = DISABLED
+            
+    except IOError:
+        textconsole["state"] = NORMAL
+        textconsole.insert(END, "ERROR: Unable to generate report file." + "\n")
+        textconsole["state"] = DISABLED
 
 def generate():
     fn.server = clicked.get()
     fn.logfile = logfld.get()
+
+    try:
+        if not os.path.exists(fn.logfile):
+            print("No input found")
+            textconsole["state"] = NORMAL
+            textconsole.insert(END, "ERROR: Directory does not exist." + "\n")
+            textconsole["state"] = DISABLED
+            return
+    except IOError:
+        textconsole["state"] = NORMAL
+        textconsole.insert(END, "ERROR: Unable to set logfile path." + "\n")
+        textconsole["state"] = DISABLED
+        return
 
     source = srcfld.get()
     root_ext = ""
@@ -15,10 +51,10 @@ def generate():
         source = None
         root_ext = os.path.splitext("default.html")
     else:
-        if source == "":
-            print("No input found")
+        if not os.path.exists(source):
+            print("ERROR: Source file not found.")
             textconsole["state"] = NORMAL
-            textconsole.insert(END, "No input found" + "\n")
+            textconsole.insert(END, "ERROR: Source file not found." + "\n")
             textconsole["state"] = DISABLED
             return
         root_ext = os.path.splitext(source)
@@ -95,6 +131,9 @@ if __name__ == "__main__":
     logBtn = tk.Button(bottomLeftFrame, text="Select directory", command=lambda:getDir(logfld))
     logBtn.grid(row = 2, column = 0, sticky='w')
 
+    genReportBtn = tk.Button(root, text="Generate Report", command=lambda:generateReport())
+    genReportBtn.place(rely=0.5, relx=0.18)
+
     # server = OptionMenu()
     templatelbl = ttk.Label(topRightFrame,text="Honeypot Template:",font=('Courier',13,'bold'))
     templatelbl.grid(row = 0, column = 0, sticky='we')
@@ -117,8 +156,8 @@ if __name__ == "__main__":
     srcBtn = tk.Button(bottomRightFrame, text="Select Source File", command=lambda:getSrc(srcfld))
     srcBtn.grid(row = 2, column = 0, sticky='w')
 
-    genBtn = tk.Button(root, text="Generate", command=lambda:generate())
-    genBtn.place(rely=0.5, relx=0.72)
+    genHoneyBtn = tk.Button(root, text="Generate Honeypot Pages", command=lambda:generate())
+    genHoneyBtn.place(rely=0.5, relx=0.65)
 
 
     root.mainloop()

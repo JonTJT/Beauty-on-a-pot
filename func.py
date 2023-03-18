@@ -144,7 +144,7 @@ def generateHoneypotPage(template, sourceFilePath, outputFile):
     except IOError:
         consoleReturn = "IO Exception: Unable to generate output honeypot files."
         print(consoleReturn)
-        return consoleReturn
+        insertConsole(consoleReturn)
 
 #Apache logging config
 def ApacheLoggingConfig():
