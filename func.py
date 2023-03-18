@@ -291,6 +291,16 @@ def copy_modsecurity_conf():
     dest = "/etc/modsecurity/modsecurity.conf"
     shutil.copyfile(src, dest)
 
+def has_existing_apache_configuration(file_path, unique_strings):
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+
+    for unique_string in unique_strings:
+        if any(unique_string in line for line in lines):
+            return True
+
+    return False
+
 def create_honeypot_rules(sec_audit_log_path):
     honeypot_rules_path = "/etc/modsecurity/honeypot_rules.conf"
     sec_audit_log_path = sec_audit_log_path + "/honeypot.log"
@@ -311,8 +321,22 @@ SecAuditLog {sec_audit_log_path}
 </Location>
 """
 
+    unique_strings = [
+        "SecRuleEngine On",
+        "SecRequestBodyAccess On",
+        "SecAuditLogParts ABC",
+        "SecAuditLog"
+    ]
+
+    if has_existing_apache_configuration(honeypot_rules_path, unique_strings):
+        print("The honeypot_rules.conf file has already been modified. Skipping the configuration process.")
+        return
+
     with open(honeypot_rules_path, 'w') as file:
         file.write(honeypot_rules_content)
+
+# (rest of the code remains the same)
+
 
 def remove_crs_folder():
     crs_folder_path = "/etc/modsecurity/crs"
@@ -360,7 +384,7 @@ def apache_log_setup(log_path):
 
 # For NGINX Log installation
 
-def has_existing_configuration(lines):
+def has_existing_nginx_configuration(lines):
     unique_strings = [
         "log_format log_req",
         "lua_need_request_body on;",
@@ -436,7 +460,7 @@ def nginx_log_setup(log_path):
     with open(CONFIG_FILE, 'r') as f:
         lines = f.readlines()
 
-    if has_existing_configuration(lines):
+    if has_existing_nginx_configuration(lines):
         print("The configuration file has already been modified. Skipping the configuration process.")
         return
 
