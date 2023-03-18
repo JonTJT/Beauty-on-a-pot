@@ -287,8 +287,12 @@ def copy_modsecurity_conf():
     shutil.copyfile(src, dest)
 
 def has_existing_apache_configuration(file_path, unique_strings, sec_audit_log_path):
-    with open(file_path, 'r') as file:
-        lines = file.readlines()
+    try:
+        with open(file_path, 'r') as file:
+            lines = file.readlines()
+    except FileNotFoundError:
+        print(f"The file '{file_path}' does not exist. Skipping the configuration check.")
+        return False
 
     for unique_string in unique_strings:
         if unique_string != "SecAuditLog":
@@ -300,6 +304,7 @@ def has_existing_apache_configuration(file_path, unique_strings, sec_audit_log_p
                 return True
 
     return False
+
 
 def create_honeypot_rules(sec_audit_log_path):
     honeypot_rules_path = "/etc/modsecurity/honeypot_rules.conf"
