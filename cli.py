@@ -99,6 +99,7 @@ def GenerateHoneypotPages():
 
         if option == 1:
             addPage()
+            break
         elif option == 2:
             return
         else:
