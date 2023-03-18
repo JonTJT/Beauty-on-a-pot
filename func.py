@@ -7,6 +7,7 @@ from tkinter.constants import DISABLED, NORMAL, END
 import re
 import csv
 import subprocess
+import time
 
 server = "Not selected"
 logfile = "Not selected"
@@ -174,10 +175,6 @@ def ApacheLogParser(log_file, csv_file):
 
         variables_list.append(filtered_variables)
 
-    directory = os.path.dirname(csv_file)
-    if not os.path.exists(directory):
-        os.makedirs(directory)
-
     with open(csv_file, 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(["Timestamp", "Src IP and Port", "Dest IP and Port", "Request headers", "Type of attack"])
@@ -199,52 +196,64 @@ def analyze_attack_type(section_b, section_c):
         return 'Unknown'
 
 # To generate report file for Apache
-def ApacheGenerateReport(logFile, CSVfile):
+def ApacheGenerateReport(logFile):
+    # Generate report file if not present
+    if not os.path.exists('./reports'):
+        os.makedirs('./reports')
+    CSVfile = "./reports/" + str(int(time.time())) + ".csv"
+
     try:
         if not os.path.isfile(logFile):
-            print(f"{logFile} not found.")
-            insertConsole(f"{logFile} not found.")
+            print(f"ERROR: {logFile} not found.\n")
+            insertConsole(f"ERROR: {logFile} not found.\n")
             return
 
         ApacheLogParser(logFile, CSVfile)
         print(f"Data successfully written to {CSVfile}")
         insertConsole(f"Data successfully written to {CSVfile}")
 
-    except:
-        print("Unable to generate report.")
-        insertConsole("Unable to generate report.")
+    except Exception as e:
+        print(f"ERROR: Unable to generate report. {e}\n")
+        insertConsole(f"ERROR: Unable to generate report.{e}\n")        
 
 # To generate report file for nginx
-def NginxGenerateReport(logFile, CSVfile):
-    logFile = "logs/nginxhoneypot.log"
-    CSVfile = "reports/nginx_output.csv"
+def NginxGenerateReport(logFile):
+    # Generate report file if not present
+    if not os.path.exists('./reports'):
+        os.makedirs('./reports')
+    CSVfile = "./reports/" + str(int(time.time())) + ".csv"
 
     if not os.path.isfile(logFile):
-        print("Input file missing. Exiting.")
-        exit()
+        print(f"ERROR: {logFile} not found.\n")
+        insertConsole(f"ERROR: {logFile} not found.\n")
+        return
 
-    with open(logFile, 'r') as f:
-        logs = f.read().split('|')
+    try:
+        with open(logFile, 'r') as f:
+            logs = f.read().split('|')
 
-        with open(CSVfile, 'w+', newline='') as csvfile:
-            writer = csv.writer(csvfile)
-            writer.writerow(["Timestamp", "Src IP and Port", "Dest IP and Port", "Request headers", "Type of attack"])
+            with open(CSVfile, 'w+', newline='') as csvfile:
+                writer = csv.writer(csvfile)
+                writer.writerow(["Timestamp", "Src IP and Port", "Dest IP and Port", "Request headers", "Type of attack"])
 
-            for log in logs:
+                for log in logs:
 
-                log = log.strip('\n')
-                if log == "":
-                    continue
+                    log = log.strip('\n')
+                    if log == "":
+                        continue
 
-                log_lines = log.split('\n')
-                timestamp_src_dst = log_lines[0].split(" ")
-                timestamp = timestamp_src_dst[0] + " " + timestamp_src_dst[1]
-                src = timestamp_src_dst[2] + " " + timestamp_src_dst[3]
-                dst = timestamp_src_dst[4] + " " + timestamp_src_dst[5]
-                headers_body = ' '.join(log_lines[1:])
-                attack_type = analyze_attack_type(headers_body, "")
+                    log_lines = log.split('\n')
+                    timestamp_src_dst = log_lines[0].split(" ")
+                    timestamp = timestamp_src_dst[0] + " " + timestamp_src_dst[1]
+                    src = timestamp_src_dst[2] + " " + timestamp_src_dst[3]
+                    dst = timestamp_src_dst[4] + " " + timestamp_src_dst[5]
+                    headers_body = ' '.join(log_lines[1:])
+                    attack_type = analyze_attack_type(headers_body, "")
 
-                writer.writerow([timestamp, src, dst, headers_body, attack_type])
+                    writer.writerow([timestamp, src, dst, headers_body, attack_type])
+    except Exception as e:
+        print(f"ERROR: Unable to generate report. {e}\n")
+        insertConsole(f"ERROR: Unable to generate report.{e}\n")        
 
 # For APACHE Log installation
 def install_modsecurity():

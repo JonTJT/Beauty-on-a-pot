@@ -72,7 +72,6 @@ def addPage():
     # Set up logging & restart server
     return
 
-
 def setLogFolder():
     try:
         while True:
@@ -86,7 +85,6 @@ def setLogFolder():
                 print("ERROR: Directory does not exist.\n")
     except:
         print("ERROR: Unable to set log file path.\n")
-
     return
 
 def GenerateHoneypotPages():
@@ -104,13 +102,13 @@ def GenerateHoneypotPages():
         else:
             print("ERROR: Not a valid number!\n")
 
-def GenerateReport(logFile, CSVfile):
+def GenerateReport(logFile):
     logFilePath = logFile + "/honeypot.log"
     try:
         if fn.server == "Apache":
-            fn.ApacheGenerateReport(logFilePath, CSVfile)
+            fn.ApacheGenerateReport(logFilePath)
         elif fn.server == "Nginx":
-            fn.NginxGenerateReport(logFilePath, CSVfile)
+            fn.NginxGenerateReport(logFilePath)
     except:
         print("An error has occured, unable to generate report file.")
 
@@ -147,11 +145,7 @@ if __name__ == "__main__":
             if (fn.server == "Not selected") or (fn.logfile == "Not selected"):
                 print("ERROR: Web server / log file not selected. Please select web server/log file.\n")
                 continue
-            # Check if log file is selected
-            csv_file = input("Please input the desired location for the report file to be generated:")
-            print()
-
-            GenerateReport(fn.logfile, csv_file)
+            GenerateReport(fn.logfile)
 
         elif option == 5:
             break
