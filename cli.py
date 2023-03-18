@@ -41,6 +41,7 @@ def addPage():
         template = "SecretSearchPage.html"
 
     source = None
+    outputFileName = "default.html"
     while (True):
         print("From Source/Default:")
         print("1) Source HTML files")
@@ -52,22 +53,19 @@ def addPage():
             if not os.path.isfile(source):
                 print("ERROR: File is invalid. Please enter in the full file path of the source file.\n")
             else:
+                outputFileName = os.path.basename(source)
                 break
         elif srcOption == '2':
             break
         else:
             print("ERROR: Invalid Option\n")
 
-    root_ext = ""
-    if source == None:
-        root_ext = os.path.splitext("default.html")
-    else:
-        root_ext = os.path.splitext(source)
+    current_folder = os.getcwd()
 
     if type == '1':
-        outputFile = root_ext[0] + "_AdminLoginHoneypot" + root_ext[1]
+        outputFile = current_folder + "\\AdminLoginHoneypot_" + outputFileName
     if type == '2':
-        outputFile = root_ext[0] + "_SearchHoneypot" + root_ext[1]
+        outputFile = current_folder + "\\SearchHoneypot_" + outputFileName
 
     # Generate honeypot pages
     fn.generateHoneypotPage(template, source, outputFile)

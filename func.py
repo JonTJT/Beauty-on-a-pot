@@ -140,6 +140,12 @@ def generateHoneypotPage(template, sourceFilePath, outputFile):
             insertConsole(f"The files [{os.path.basename(outputFile)}, search.js, and process_search.php] have been generated.")
             insertConsole(f"Please remember to edit the file name for {os.path.basename(outputFile)}.")
 
+    except Exception as e:
+        consoleReturn = f"ERROR: An error has occured with the honeypot page generation process. {e}\n"
+        print(consoleReturn)
+        insertConsole(consoleReturn)
+
+    try:
         # To set up logging 
         print(f"Setting up logging for {server}...")
         insertConsole(f"Setting up logging for {server}...")
@@ -150,7 +156,7 @@ def generateHoneypotPage(template, sourceFilePath, outputFile):
             nginx_log_setup(logfile)
 
     except Exception as e:
-        consoleReturn = f"ERROR: An error has occured with the honeypot generation process. {e}\n"
+        consoleReturn = f"ERROR: An error has occured with the logging installation process. {e}\n"
         print(consoleReturn)
         insertConsole(consoleReturn)
 
