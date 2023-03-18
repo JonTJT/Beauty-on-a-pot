@@ -227,10 +227,12 @@ def ApacheGenerateReport(logFile, CSVfile):
     try:
         if not os.path.isfile(logFile):
             print(f"{logFile} not found.")
+            insertConsole(f"{logFile} not found.")
             return
 
         ApacheLogParser(logFile, CSVfile)
         print(f"Data successfully written to {CSVfile}")
+        insertConsole(f"Data successfully written to {CSVfile}")
 
     except:
         print("Unable to generate report.")

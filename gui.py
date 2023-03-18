@@ -9,23 +9,15 @@ import time
 def generateReport():
     try:
         logfile = logfld.get() + "/honeypot.log"
-        if os.path.exists(logfile):
-            if fn.server == "Apache":
-                csv_file = fn.logfile + "/reports/" + int(time.time()) + ".csv"
-                fn.ApacheGenerateReport(logfile, csv_file)
-                print(f"Data successfully written to {csv_file}")
-            elif fn.server == "Nginx":
-                csv_file = fn.logfile + "/reports/" + int(time.time()) + ".csv"
-                fn.NginxGenerateReport(logfile, csv_file)
-                print(f"Data successfully written to {csv_file}")
-        else: 
-            textconsole["state"] = NORMAL
-            textconsole.insert(END, "ERROR: Unable to open logfile" + "\n")
-            textconsole["state"] = DISABLED
-            
+        if clicked.get() == "Apache":
+            csv_file = logfld.get() + "/reports/" + str(int(time.time())) + ".csv"
+            fn.ApacheGenerateReport(logfile, csv_file)
+        elif clicked.get() == "Nginx":
+            csv_file = logfld.get() + "/reports/" + str(int(time.time())) + ".csv"
+            fn.NginxGenerateReport(logfile, csv_file)
     except IOError:
         textconsole["state"] = NORMAL
-        textconsole.insert(END, "ERROR: Unable to generate report file." + "\n")
+        textconsole.insert(END, "ERROR: Unable to generate report csv file." + "\n")
         textconsole["state"] = DISABLED
 
 def generate():
