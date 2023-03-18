@@ -297,10 +297,10 @@ SecAuditLogParts ABC
 SecAuditLog {sec_audit_log_path}
 
 # Define a location-based rule for specific pages
-<Location /var/www/html/process_login.php>
+<Location {os.getcwd() + '/process_login.php'}>
    SecRule REQUEST_METHOD "POST" "id:1000,phase:1,t:none,pass,nolog,ctl:requestBodyProcessor=URLENCODED"
 </Location>
-<Location /var/www/html/process_search.php>
+<Location {os.getcwd() + '/process_search.php'}>
    SecRule REQUEST_METHOD "POST" "id:1000,phase:1,t:none,pass,nolog,ctl:requestBodyProcessor=URLENCODED"
 </Location>
 """
@@ -358,6 +358,7 @@ def nginx_log_setup(log_path):
     PHP_DIR = '/etc/php/8.2/fpm'
 
     # Set the path to the Nginx config file
+    CONFIG_FILE = os.getcwd() + "/../conf/nginx.conf"
     CONFIG_FILE = '/usr/local/openresty/nginx/conf/nginx.conf'
 
     # Define the string to insert for log_format
