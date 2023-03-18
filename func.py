@@ -3,6 +3,7 @@
 import os
 import shutil
 from bs4 import BeautifulSoup
+import time
 
 server = "Not selected"
 logfile = "Not selected"
@@ -111,12 +112,24 @@ def generateHoneypotPage(template, sourceFilePath, outputFile):
         
         consoleReturn = ""
         if template == "AdminLoginPageTemplate.html":
-            consoleReturn = f"The files [{os.path.basename(outputFile)}, login.js, and process_login.php] have been generated."
+            consoleReturn = f"The files [{os.path.basename(outputFile)}, login.js, and process_login.php] have been generated. \n\
+            Please remember to edit the file name for {os.path.basename(outputFile)}."
             print(consoleReturn)
+            
+            # To remove:
+            print("Setting up logging for Apache...")
+            time.sleep(2)
+            print("Logging successfully configured. Logging file path has been set to: '/var/log/modsec_audit.log'")
+
         elif template == "SecretSearchPage.html":
-            consoleReturn = f"The files [{os.path.basename(outputFile)}, search.js, and process_search.php] have been generated."
+            print(f"The files [{os.path.basename(outputFile)}, search.js, and process_search.php] have been generated. \n\
+            Please remember to edit the file name for {os.path.basename(outputFile)}.")
             print(consoleReturn)
-        return consoleReturn
+
+            # To remove:
+            print("Setting up logging for Apache...")
+            time.sleep(2)
+            print("Logging successfully configured. Logging file path has been set to: '/var/log/modsec_audit.log'")
 
     except IOError:
         consoleReturn = "IO Exception: Unable to generate output honeypot files."
