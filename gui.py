@@ -5,6 +5,12 @@ from tkinter import font  as tkfont
 from tkinter import Message, Widget, filedialog , messagebox , ttk
 from tkinter.constants import BOTH, BOTTOM, CENTER, DISABLED, FALSE, LEFT, NORMAL, RIGHT, TRUE, VERTICAL, X, Y, END
 
+def insertConsole(text):
+    textconsole["state"] = NORMAL
+    textconsole.insert(END, text + "\n")
+    textconsole["state"] = DISABLED
+
+
 def generate():
     fn.server = clicked.get()
     fn.logfile = logfld.get()
@@ -17,6 +23,7 @@ def generate():
     else:
         if source == "":
             print("No input found")
+            insertConsole("No input found")
             return
         root_ext = os.path.splitext(source)
 
@@ -30,10 +37,7 @@ def generate():
         outputFile = root_ext[0] + "_SearchHoneypot" + root_ext[1]
     
     response = fn.generateHoneypotPage(template, source, outputFile)
-
-    textconsole["state"] = NORMAL
-    textconsole.insert(END, "\n" + response)
-    textconsole["state"] = DISABLED
+    insertConsole(response)
 
 def getDir(fld):
     location = filedialog.askdirectory()
