@@ -71,7 +71,7 @@ if __name__ == "__main__":
     bottomRightFrame.place(relwidth=0.45, relheight=0.3, rely=0.4, relx=0.50)
 
     # server = OptionMenu()
-    serverlbl = ttk.Label(topLeftFrame,text="Server:",font=('Courier',13,'bold'))
+    serverlbl = ttk.Label(topLeftFrame,text="Select web server:",font=('Courier',13,'bold'))
     serverlbl.grid(row = 0, column = 0, sticky='ew')
     options = ["Apache", "Nginx"]
     clicked = tk.StringVar()
