@@ -1,27 +1,25 @@
-# Guide to setup NGINX test environment
+# Guide to setup NGINX test environment with OpenResty
+For enhanced logging to grab all request headers with Lua, certain modules are included. Instead of manually installing the modules, it is required to use OpenResty, a wrapper around Nginx, as it comes packaged and properly configured to use the needed modules. This test environment is using Ubuntu 22.04 and PHP 8.2, which is also highly recommended to avoid errors.
 
-1. On your linux virtual machine, install the Nginx Web Server: <br>
-   `sudo apt-get update` <br>
-   `sudo apt-get install nginx` 
-2. Install PHP for processing <br>
-   `sudo apt-get install php-fpm php-mysql`
-3. Configure the PHP processor <br>
-   `sudo nano /etc/php/8.2/fpm/php.ini` <br>
-   Find the line `cgi.fix_pathinfo` and uncomment it, setting the value to 0: <br>
-   `cgi.fix_pathinfo=0`
-4. Restart the php processor <br>
-   `sudo systemctl restart php8.2-fpm`
-5. Configure Nginx to use the PHP processor by copying and replacing the `default` file in the `nginx_test_env` folder into `/etc/nginx/sites-available/`
-6. Change the `server_name` value in the `/etc/nginx/sites-available/default` folder to the IP of your own VM. <br>
-   `sudo nano /etc/nginx/sites-availble/default`
-7. Verify the configuration file has no syntax errors <br>
-   `sudo nginx -t`
-8. Copy and replace the `html` in the `nginx_test_env` folder into `/var/www/html`
-9.  Reload Nginx and test that the website works. Note that your browser may cache the webpage, and using private browsing is recommended to verify the configurations of the webserver.<br>
-   `sudo systemctl reload nginx`
-
+1. On your Ubuntu 22.04 machine, install OpenResty: <br>
+   `sudo systemctl disable nginx`<br>
+   `sudo systemctl stop nginx`<br>
+   `sudo apt-get -y install --no-install-recommends wget gnupg ca-certificates`<br>
+   `wget -O - https://openresty.org/package/pubkey.gpg | sudo gpg --dearmor -o /usr/share/keyrings/openresty.gpg`<br>
+   `echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/openresty.gpg] http://openresty.org/package/ubuntu $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/openresty.list > /dev/null`<br>
+   `sudo apt-get update`<br>
+   `sudo apt-get -y install openresty`
+2. Install php 8.2<br>
+   `sudo add-apt-repository ppa:ondrej/php`<br>
+   `sudo apt-get update`<br>
+   `sudo apt-get install php-fpm php-mysql`<br>
+3. Copy the *nginx-test-env* directory from this git repo into your Ubuntu, and open a terminal in this directory.<br>
+4. Run *php8.2conf.sh* to fix a compatibility issue with OpenResty and PHP<br>
+   `sudo php8.2conf.sh`<br>
+5. **(Optional)** If you would like to set up a test environment, run nginxconf.sh<br>
+   `sudo nginxconf.sh`<br>
+6. **(Optional)** Alternatively, if you want to use existing files, please copy them into the */usr/local/openresty/nginx/html/* directory.<br>
+   `cp *.php /usr/local/openresty/nginx/html/`<br>
 
 ## Debugging:
-1. 502 Error: Please check that your configuration file `/etc/nginx/sites-available/default` has the correct value for the `server_name` variable
-2. For Ubuntu, the php-fpm version installed is 8.1, therefore for all the steps above, please use php8.1 instead of php8.2. The `/etc/nginx/sites-available/default` file also has to be configured to use php8.1 instead of 8.2: <br>
-   `fastcgi_pass unix:/run/php/php8.2-fpm.sock` to `fastcgi_pass unix:/run/php/php8.1-fpm.sock`
+To be updated.
