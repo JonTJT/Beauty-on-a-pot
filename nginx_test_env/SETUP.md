@@ -16,13 +16,13 @@ For enhanced logging to grab all request headers with Lua, certain modules are i
    `sudo apt-get install php-fpm php-mysql`<br>
 4. Copy the *nginx-test-env* directory from this git repo into your Ubuntu, and open a terminal in this directory.<br>
 5. Run *php8.2conf.sh* to fix a compatibility issue with OpenResty and PHP<br>
-   `sudo php8.2conf.sh`<br>
+   `sudo ./php8.2conf.sh`<br>
 6. **(Optional)** If you would like to set up a test environment, run nginxconf.sh<br>
-   `sudo nginxconf.sh`<br>
+   `sudo ./nginxconf.sh`<br>
 7. **(Optional)** Alternatively, if you want to use existing files, please copy them into the */usr/local/openresty/nginx/html/* directory.<br>
    `cp *.php /usr/local/openresty/nginx/html/`<br>
 8. **(Optional)** Run *shortcut.sh* to make a *hptlog* alias to print the honeypot logs.
-   `sudo shortcut.sh`<br>
+   `sudo ./shortcut.sh`<br>
    `hptlog`
 
 ## Debugging:
