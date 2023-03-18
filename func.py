@@ -4,9 +4,16 @@ import os
 import shutil
 from bs4 import BeautifulSoup
 import time
+from tkinter.constants import DISABLED, NORMAL, END
 
 server = "Not selected"
 logfile = "Not selected"
+textconsole = None
+
+def insertConsole(text):
+    textconsole["state"] = NORMAL
+    textconsole.insert(END, text + "\n")
+    textconsole["state"] = DISABLED
 
 # To generate the output files
 def generateOutputFile(template, output, sourceFile=None):
@@ -110,26 +117,45 @@ def generateHoneypotPage(template, sourceFilePath, outputFile):
             # Add main to output file, placed before footer if main is not present.
             insertOrReplaceElement(outputfile, "main", "header", templatemain)
         
-        consoleReturn = ""
         if template == "AdminLoginPageTemplate.html":
-            consoleReturn = f"The files [{os.path.basename(outputFile)}, login.js, and process_login.php] have been generated. \n\
-            Please remember to edit the file name for {os.path.basename(outputFile)}."
-            print(consoleReturn)
+            print(f"The files [{os.path.basename(outputFile)}, login.js, and process_login.php] have been generated. \n\
+            Please remember to edit the file name for {os.path.basename(outputFile)}.")
+
+            insertConsole(f"The files [{os.path.basename(outputFile)}, login.js, and process_login.php] have been generated.")
+            insertConsole(f"Please remember to edit the file name for {os.path.basename(outputFile)}.")
             
             # To remove:
             print("Setting up logging for Apache...")
-            time.sleep(2)
-            print("Logging successfully configured. Logging file path has been set to: '/var/log/modsec_audit.log'")
+            insertConsole("Setting up logging for Apache...")
+            # time.sleep(2)
+            print("Logging successfully configured. Logging file path has been set to: '/var/log/honeypot.log'")
+            insertConsole("Logging successfully configured. Logging file path has been set to: '/var/log/honeypot.log'")
+            
+            print("Restarting Apache server.... Please wait")
+            insertConsole("Restarting Apache server.... Please wait")
+            # time.sleep(5)
+            print("Server successfully restarted!")
+            insertConsole("Server successfully restarted!")
 
         elif template == "SecretSearchPage.html":
             print(f"The files [{os.path.basename(outputFile)}, search.js, and process_search.php] have been generated. \n\
             Please remember to edit the file name for {os.path.basename(outputFile)}.")
-            print(consoleReturn)
+            
+            insertConsole(f"The files [{os.path.basename(outputFile)}, search.js, and process_search.php] have been generated.")
+            insertConsole(f"Please remember to edit the file name for {os.path.basename(outputFile)}.")
 
             # To remove:
             print("Setting up logging for Apache...")
-            time.sleep(2)
-            print("Logging successfully configured. Logging file path has been set to: '/var/log/modsec_audit.log'")
+            insertConsole("Setting up logging for Apache...")
+            # time.sleep(2)
+            print("Logging successfully configured. Logging file path has been set to: '/var/log/honeypot.log'")
+            insertConsole("Logging successfully configured. Logging file path has been set to: '/var/log/honeypot.log'")
+            
+            print("Restarting Apache server.... Please wait")
+            insertConsole("Restarting Apache server.... Please wait")
+            # time.sleep(5)
+            print("Server successfully restarted!")
+            insertConsole("Server successfully restarted!")
 
     except IOError:
         consoleReturn = "IO Exception: Unable to generate output honeypot files."

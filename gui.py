@@ -5,12 +5,6 @@ from tkinter import font  as tkfont
 from tkinter import Message, Widget, filedialog , messagebox , ttk
 from tkinter.constants import BOTH, BOTTOM, CENTER, DISABLED, FALSE, LEFT, NORMAL, RIGHT, TRUE, VERTICAL, X, Y, END
 
-def insertConsole(text):
-    textconsole["state"] = NORMAL
-    textconsole.insert(END, text + "\n")
-    textconsole["state"] = DISABLED
-
-
 def generate():
     fn.server = clicked.get()
     fn.logfile = logfld.get()
@@ -23,7 +17,9 @@ def generate():
     else:
         if source == "":
             print("No input found")
-            insertConsole("No input found")
+            textconsole["state"] = NORMAL
+            textconsole.insert(END, "No input found" + "\n")
+            textconsole["state"] = DISABLED
             return
         root_ext = os.path.splitext(source)
 
@@ -36,8 +32,7 @@ def generate():
         template = "SecretSearchPage.html"
         outputFile = root_ext[0] + "_SearchHoneypot" + root_ext[1]
     
-    response = fn.generateHoneypotPage(template, source, outputFile)
-    insertConsole(response)
+    fn.generateHoneypotPage(template, source, outputFile)
 
 def getDir(fld):
     location = filedialog.askdirectory()
@@ -81,6 +76,7 @@ if __name__ == "__main__":
     textconsole = tk.Text(root)
     textconsole.place(relwidth=0.9, relheight=0.4, rely=0.59, relx=0.05)
     textconsole["state"] = DISABLED
+    fn.textconsole = textconsole
 
     # server = OptionMenu()
     serverlbl = ttk.Label(topLeftFrame,text="Select Web Server:",font=('Courier',13,'bold'))
