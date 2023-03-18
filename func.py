@@ -109,10 +109,16 @@ def generateHoneypotPage(template, sourceFilePath, outputFile):
             # Add main to output file, placed before footer if main is not present.
             insertOrReplaceElement(outputfile, "main", "header", templatemain)
         
+        consoleReturn = ""
         if template == "AdminLoginPageTemplate.html":
-            print(f"The files [{os.path.basename(outputFile)}, login.js, and process_login.php] have been generated.")
+            consoleReturn = f"The files [{os.path.basename(outputFile)}, login.js, and process_login.php] have been generated."
+            print(consoleReturn)
         elif template == "SecretSearchPage.html":
-            print(f"The files [{os.path.basename(outputFile)}, search.js, and process_search.php] have been generated.")
+            consoleReturn = f"The files [{os.path.basename(outputFile)}, search.js, and process_search.php] have been generated."
+            print(consoleReturn)
+        return consoleReturn
 
     except IOError:
-        print("IO Exception: Unable to generate output honeypot files.")
+        consoleReturn = "IO Exception: Unable to generate output honeypot files."
+        print(consoleReturn)
+        return consoleReturn

@@ -29,7 +29,11 @@ def generate():
         template = "SecretSearchPage.html"
         outputFile = root_ext[0] + "_SearchHoneypot" + root_ext[1]
     
-    fn.generateHoneypotPage(template, source, outputFile)
+    response = fn.generateHoneypotPage(template, source, outputFile)
+
+    textconsole["state"] = NORMAL
+    textconsole.insert(END, "\n" + response)
+    textconsole["state"] = DISABLED
 
 def getDir(fld):
     location = filedialog.askdirectory()
@@ -53,7 +57,7 @@ def disableEntry():
 
 if __name__ == "__main__":
     root = tk.Tk()
-    root.geometry("600x300")       # Width x height
+    root.geometry("600x400")       # Width x height
     root.title("Beauty On a Pot")
     root.resizable(0,0)
 
@@ -61,14 +65,18 @@ if __name__ == "__main__":
     MainTitle.pack()
 
     topLeftFrame = tk.Frame(root)
-    topLeftFrame.place(relwidth=0.45, relheight=0.3, rely=0.2, relx=0.05)
+    topLeftFrame.place(relwidth=0.45, relheight=0.3, rely=0.15, relx=0.05)
     bottomLeftFrame = tk.Frame(root)
-    bottomLeftFrame.place(relwidth=0.45, relheight=0.3, rely=0.4, relx=0.05)
+    bottomLeftFrame.place(relwidth=0.45, relheight=0.3, rely=0.3, relx=0.05)
 
     topRightFrame = tk.Frame(root)
-    topRightFrame.place(relwidth=0.45, relheight=0.3, rely=0.2, relx=0.50)
+    topRightFrame.place(relwidth=0.45, relheight=0.3, rely=0.15, relx=0.55)
     bottomRightFrame = tk.Frame(root)
-    bottomRightFrame.place(relwidth=0.45, relheight=0.3, rely=0.4, relx=0.50)
+    bottomRightFrame.place(relwidth=0.45, relheight=0.3, rely=0.3, relx=0.55)
+    
+    textconsole = tk.Text(root)
+    textconsole.place(relwidth=0.9, relheight=0.4, rely=0.59, relx=0.05)
+    textconsole["state"] = DISABLED
 
     # server = OptionMenu()
     serverlbl = ttk.Label(topLeftFrame,text="Select Web Server:",font=('Courier',13,'bold'))
@@ -109,8 +117,8 @@ if __name__ == "__main__":
     srcBtn = tk.Button(bottomRightFrame, text="Select Source File", command=lambda:getSrc(srcfld))
     srcBtn.grid(row = 2, column = 0, sticky='w')
 
-
     genBtn = tk.Button(root, text="Generate", command=lambda:generate())
-    genBtn.place(rely=0.7, relx=0.67)
+    genBtn.place(rely=0.5, relx=0.72)
+
 
     root.mainloop()
