@@ -507,8 +507,8 @@ def nginx_log_setup(log_path):
     # Overwrite the original config file with the modified version
     os.system('mv ' + CONFIG_FILE + '.tmp ' + CONFIG_FILE)
 
-    print("Logging successfully configured. Logging file path has been set to: '/var/log/honeypot.log'")
-    insertConsole("Logging successfully configured. Logging file path has been set to: '/var/log/honeypot.log'")
+    print(f"Logging successfully configured. Logging file path has been set to: {log_path + '/honeypot.log'}")
+    insertConsole(f"Logging successfully configured. Logging file path has been set to: {log_path + '/honeypot.log'}")
     
     print(f"Restarting {server} server.... Please wait")
     insertConsole(f"Restarting {server} server.... Please wait")
