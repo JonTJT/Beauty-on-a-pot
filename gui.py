@@ -6,6 +6,11 @@ from tkinter import Message, Widget, filedialog , messagebox , ttk
 from tkinter.constants import BOTH, BOTTOM, CENTER, DISABLED, FALSE, LEFT, NORMAL, RIGHT, TRUE, VERTICAL, X, Y, END
 import time
 
+def insertConsole(text):
+    textconsole["state"] = NORMAL
+    textconsole.insert(END, text + "\n")
+    textconsole["state"] = DISABLED
+
 def generateReport():
     try:
         logfile = logfld.get() + "/honeypot.log"
@@ -16,9 +21,7 @@ def generateReport():
             csv_file = logfld.get() + "/reports/" + str(int(time.time())) + ".csv"
             fn.NginxGenerateReport(logfile, csv_file)
     except IOError:
-        textconsole["state"] = NORMAL
-        textconsole.insert(END, "ERROR: Unable to generate report csv file." + "\n")
-        textconsole["state"] = DISABLED
+        insertConsole("ERROR: Unable to generate report csv file.")
 
 def generate():
     fn.server = clicked.get()
@@ -27,14 +30,11 @@ def generate():
     try:
         if not os.path.exists(fn.logfile):
             print("No input found")
-            textconsole["state"] = NORMAL
-            textconsole.insert(END, "ERROR: Directory does not exist." + "\n")
-            textconsole["state"] = DISABLED
+            insertConsole("ERROR: Directory does not exist.")
             return
     except IOError:
-        textconsole["state"] = NORMAL
-        textconsole.insert(END, "ERROR: Unable to set logfile path." + "\n")
-        textconsole["state"] = DISABLED
+        print("ERROR: Unable to set logfile path.")
+        insertConsole("ERROR: Unable to set logfile path.")
         return
 
     source = srcfld.get()
@@ -45,9 +45,7 @@ def generate():
     else:
         if not os.path.exists(source):
             print("ERROR: Source file not found.")
-            textconsole["state"] = NORMAL
-            textconsole.insert(END, "ERROR: Source file not found." + "\n")
-            textconsole["state"] = DISABLED
+            insertConsole("ERROR: Source file not found.")
             return
         root_ext = os.path.splitext(source)
 
@@ -104,7 +102,7 @@ if __name__ == "__main__":
     textconsole = tk.Text(root)
     textconsole.place(relwidth=0.9, relheight=0.4, rely=0.59, relx=0.05)
     textconsole["state"] = DISABLED
-    fn.textconsole = textconsole
+    # fn.textconsole = textconsole
 
     # server = OptionMenu()
     serverlbl = ttk.Label(topLeftFrame,text="Select Web Server:",font=('Courier',13,'bold'))
