@@ -353,6 +353,21 @@ def apache_log_setup(log_path):
     return None
 
 # For NGINX Log installation
+
+def has_existing_configuration(lines):
+    unique_strings = [
+        "log_format log_req",
+        "lua_need_request_body on;",
+        "location = /process_login.php",
+        "location = /process_search.php"
+    ]
+
+    for unique_string in unique_strings:
+        if any(unique_string in line for line in lines):
+            return True
+
+    return False
+
 def nginx_log_setup(log_path):
     # Set expected php path to check for
     PHP_DIR = '/etc/php/8.2/fpm'
@@ -411,9 +426,13 @@ def nginx_log_setup(log_path):
         os.system('cp /usr/local/openresty/nginx/conf/nginx.conf /usr/local/openresty/nginx/conf/nginx.conf.backup')
         print('Backup created as /usr/local/openresty/nginx/conf/nginx.conf.backup.')
 
-    # Use awk to find the http block and insert the strings
+     # Use awk to find the http block and insert the strings
     with open(CONFIG_FILE, 'r') as f:
         lines = f.readlines()
+
+    if has_existing_configuration(lines):
+        print("The configuration file has already been modified. Skipping the configuration process.")
+        return
 
     with open(CONFIG_FILE + '.tmp', 'w') as f:
         in_http_block = False
