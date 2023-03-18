@@ -40,20 +40,24 @@ def addPage():
     elif type == 2:
         template = "SecretSearchPage.html"
 
-    print("From Source/Default:")
-    print("1) Source HTML files")
-    print("2) Default template")
-    srcOption = int(input("==> "))
-    print()
-    while (srcOption != 1 and srcOption != 2):
-        print("Invalid Option")
+    while (True):
+        print("From Source/Default:")
+        print("1) Source HTML files")
+        print("2) Default template")
         srcOption = int(input("==> "))
-        print()
-    if srcOption == 1:
-        source = input("Source filepath ==> ")
-        print()
-    elif srcOption == 2:
-        source = None
+        if srcOption == 1:
+            source = input("Source filepath ==> ")
+            print()
+            if not os.path.isfile(source):
+                print("File is invalid. Please enter in the full file path of the source file.")
+            else:
+                break
+        elif srcOption == 2:
+            source = None
+            break
+        else:
+            print("Invalid Option")
+            print()
 
     root_ext = ""
     if source == None:
