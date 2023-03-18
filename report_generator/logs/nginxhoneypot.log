@@ -1,0 +1,276 @@
+[18/Mar/2023:14:00:05 +0800] 127.0.0.1 39086 127.0.0.1 80
+POST /process_login.php HTTP/1.1
+host=localhost
+sec-fetch-user=?1
+user-agent=Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+sec-fetch-site=same-origin
+accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+sec-fetch-mode=navigate
+accept-language=en-US,en;q=0.5
+referer=http://localhost/default_AdminLoginHoneypot.html
+accept-encoding=gzip, deflate, br
+content-type=application/x-www-form-urlencoded
+dnt=1
+content-length=35
+connection=keep-alive
+origin=http://localhost
+upgrade-insecure-requests=1
+sec-fetch-dest=document
+username=asfd&password=asdfasdfasdf
+|
+
+[18/Mar/2023:14:00:12 +0800] 127.0.0.1 39086 127.0.0.1 80
+POST /process_login.php HTTP/1.1
+host=localhost
+sec-fetch-user=?1
+user-agent=Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+sec-fetch-site=same-origin
+accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+sec-fetch-mode=navigate
+accept-language=en-US,en;q=0.5
+referer=http://localhost/default_AdminLoginHoneypot.html
+accept-encoding=gzip, deflate, br
+content-type=application/x-www-form-urlencoded
+dnt=1
+content-length=35
+connection=keep-alive
+origin=http://localhost
+upgrade-insecure-requests=1
+sec-fetch-dest=document
+username=hello&password=whatthefuck
+|
+
+[18/Mar/2023:14:00:37 +0800] 127.0.0.1 39086 127.0.0.1 80
+POST /process_login.php HTTP/1.1
+host=localhost
+sec-fetch-user=?1
+user-agent=Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+sec-fetch-site=same-origin
+accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+sec-fetch-mode=navigate
+accept-language=en-US,en;q=0.5
+referer=http://localhost/default_AdminLoginHoneypot.html
+accept-encoding=gzip, deflate, br
+content-type=application/x-www-form-urlencoded
+dnt=1
+content-length=53
+connection=keep-alive
+origin=http://localhost
+upgrade-insecure-requests=1
+sec-fetch-dest=document
+username=helpmeplease&password=fhoryshetimgoinginsane
+|
+
+[18/Mar/2023:14:01:35 +0800] 127.0.0.1 39086 127.0.0.1 80
+GET /process_search.php?search=Mr+Kevin+Walker HTTP/1.1
+host=localhost
+user-agent=Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+accept-language=en-US,en;q=0.5
+referer=http://localhost/default_SearchHoneypot.html
+accept-encoding=gzip, deflate, br
+sec-fetch-user=?1
+dnt=1
+sec-fetch-site=same-origin
+connection=keep-alive
+sec-fetch-mode=navigate
+upgrade-insecure-requests=1
+sec-fetch-dest=document
+
+|
+
+[18/Mar/2023:14:01:51 +0800] 127.0.0.1 39086 127.0.0.1 80
+GET /process_search.php?search=Lee+Hsien+Loong HTTP/1.1
+host=localhost
+user-agent=Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+accept-language=en-US,en;q=0.5
+referer=http://localhost/default_SearchHoneypot.html
+accept-encoding=gzip, deflate, br
+sec-fetch-user=?1
+dnt=1
+sec-fetch-site=same-origin
+connection=keep-alive
+sec-fetch-mode=navigate
+upgrade-insecure-requests=1
+sec-fetch-dest=document
+
+|
+
+[18/Mar/2023:14:02:03 +0800] 127.0.0.1 39086 127.0.0.1 80
+GET /process_search.php?search=nidemama HTTP/1.1
+host=localhost
+user-agent=Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+accept-language=en-US,en;q=0.5
+referer=http://localhost/default_SearchHoneypot.html
+accept-encoding=gzip, deflate, br
+sec-fetch-user=?1
+dnt=1
+sec-fetch-site=same-origin
+connection=keep-alive
+sec-fetch-mode=navigate
+upgrade-insecure-requests=1
+sec-fetch-dest=document
+
+|
+
+[18/Mar/2023:14:02:43 +0800] 127.0.0.1 39086 127.0.0.1 80
+GET /process_search.php?search=Abdulla+Bin+Ahmad+S%2FO+Rajaratnam HTTP/1.1
+host=localhost
+user-agent=Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+accept-language=en-US,en;q=0.5
+referer=http://localhost/default_SearchHoneypot.html
+accept-encoding=gzip, deflate, br
+sec-fetch-user=?1
+dnt=1
+sec-fetch-site=same-origin
+connection=keep-alive
+sec-fetch-mode=navigate
+upgrade-insecure-requests=1
+sec-fetch-dest=document
+
+|
+
+[18/Mar/2023:16:30:57 +0800] 127.0.0.1 49882 127.0.0.1 80
+GET /process_search.php?search=%3Cscript%3Ehello%3C%2Fscript%3E HTTP/1.1
+host=localhost
+user-agent=Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+accept-language=en-US,en;q=0.5
+referer=http://localhost/default_SearchHoneypot.html
+accept-encoding=gzip, deflate, br
+sec-fetch-user=?1
+dnt=1
+sec-fetch-site=same-origin
+connection=keep-alive
+sec-fetch-mode=navigate
+upgrade-insecure-requests=1
+sec-fetch-dest=document
+
+|
+
+[18/Mar/2023:16:31:34 +0800] 127.0.0.1 49882 127.0.0.1 80
+GET /process_search.php?search=%27+OR+1%3D%3D1+AND+INSERT+%22My+penis%22+into+testtable%3B+--- HTTP/1.1
+host=localhost
+user-agent=Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+accept-language=en-US,en;q=0.5
+referer=http://localhost/default_SearchHoneypot.html
+accept-encoding=gzip, deflate, br
+sec-fetch-user=?1
+dnt=1
+sec-fetch-site=same-origin
+connection=keep-alive
+sec-fetch-mode=navigate
+upgrade-insecure-requests=1
+sec-fetch-dest=document
+
+|
+
+[18/Mar/2023:16:33:12 +0800] 127.0.0.1 38292 127.0.0.1 80
+POST /process_login.php HTTP/1.1
+host=localhost
+sec-fetch-user=?1
+user-agent=Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+sec-fetch-site=same-origin
+accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+sec-fetch-mode=navigate
+accept-language=en-US,en;q=0.5
+referer=http://localhost/default_AdminLoginHoneypot.html
+accept-encoding=gzip, deflate, br
+content-type=application/x-www-form-urlencoded
+dnt=1
+content-length=110
+connection=keep-alive
+origin=http://localhost
+upgrade-insecure-requests=1
+sec-fetch-dest=document
+username=%27+Or+1%3D%3D1+UNION+Select+username%2C+password+from+logins%3B+---&password=meesayousamikeyyyymouse
+|
+
+[18/Mar/2023:16:34:12 +0800] 127.0.0.1 38292 127.0.0.1 80
+POST /process_login.php HTTP/1.1
+host=localhost
+sec-fetch-user=?1
+user-agent=Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+sec-fetch-site=same-origin
+accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+sec-fetch-mode=navigate
+accept-language=en-US,en;q=0.5
+referer=http://localhost/default_AdminLoginHoneypot.html
+accept-encoding=gzip, deflate, br
+content-type=application/x-www-form-urlencoded
+dnt=1
+content-length=88
+connection=keep-alive
+origin=http://localhost
+upgrade-insecure-requests=1
+sec-fetch-dest=document
+username=%3Cscript%3Ealert%28deeznuts%29%3C%2Fscript%3E&password=meesayousamikeyyyymouse
+|
+
+[18/Mar/2023:16:34:35 +0800] 127.0.0.1 38292 127.0.0.1 80
+POST /process_login.php HTTP/1.1
+host=localhost
+sec-fetch-user=?1
+user-agent=Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+sec-fetch-site=same-origin
+accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+sec-fetch-mode=navigate
+accept-language=en-US,en;q=0.5
+referer=http://localhost/default_AdminLoginHoneypot.html
+accept-encoding=gzip, deflate, br
+content-type=application/x-www-form-urlencoded
+dnt=1
+content-length=94
+connection=keep-alive
+origin=http://localhost
+upgrade-insecure-requests=1
+sec-fetch-dest=document
+username=%3Cscript%3Ealert%28%22deeznuts%22%29%3C%2Fscript%3E&password=meesayousamikeyyyymouse
+|
+
+[18/Mar/2023:16:34:43 +0800] 127.0.0.1 38292 127.0.0.1 80
+POST /process_login.php HTTP/1.1
+host=localhost
+sec-fetch-user=?1
+user-agent=Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+sec-fetch-site=same-origin
+accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+sec-fetch-mode=navigate
+accept-language=en-US,en;q=0.5
+referer=http://localhost/default_AdminLoginHoneypot.html
+accept-encoding=gzip, deflate, br
+content-type=application/x-www-form-urlencoded
+dnt=1
+content-length=94
+connection=keep-alive
+origin=http://localhost
+upgrade-insecure-requests=1
+sec-fetch-dest=document
+username=%3Cscript%3Ealert%28%22deeznuts%22%29%3C%2Fscript%3E&password=meesayousamikeyyyymouse
+|
+
+[18/Mar/2023:16:36:21 +0800] 127.0.0.1 40868 127.0.0.1 80
+POST /process_login.php HTTP/1.1
+host=localhost
+sec-fetch-user=?1
+user-agent=Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/111.0
+sec-fetch-site=same-origin
+accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+sec-fetch-mode=navigate
+accept-language=en-US,en;q=0.5
+referer=http://localhost/default_AdminLoginHoneypot.html
+accept-encoding=gzip, deflate, br
+content-type=application/x-www-form-urlencoded
+dnt=1
+content-length=94
+connection=keep-alive
+origin=http://localhost
+upgrade-insecure-requests=1
+sec-fetch-dest=document
+username=%3Cscript%3Ealert%28%22deeznuts%22%29%3C%2Fscript%3E&password=meesayousamikeyyyymouse
+|
+
