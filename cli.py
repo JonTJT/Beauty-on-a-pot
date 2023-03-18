@@ -20,6 +20,8 @@ def setServer():
             fn.server = "Apache"
             print("Selected Apache\n")
             return
+        else:
+            print("ERROR: Invalid option.\n")
 
 def addPage():
     print("Type of honeypot page: ")
@@ -27,10 +29,13 @@ def addPage():
     print("2) Search Bar")
     type = int(input("==> "))
     print()
-    while (type != 1 and type != 2):
-        print("Invalid Option")
+    while True:
         type = int(input("==> "))
         print()
+        if (type == 1) or (type == 2):
+            break
+        else:
+            print("ERROR: Invalid option.\n")
     if type == 1:
         template = "AdminLoginPageTemplate.html"
     elif type == 2:
@@ -69,13 +74,23 @@ def addPage():
     return
 
 
-def setLogfile():
-    fn.logfile = input("Select filepath to generate logs ==> ")
-    print()
+def setLogFolder():
+    try:
+        while True:
+            logfile = input("Select folder to store log file ==> ")
+            print()
+        
+            if os.path.exists(logfile):
+                fn.logfile = logfile
+                break
+            else:
+                print("ERROR: Directory does not exist.\n")
+    except:
+        print("ERROR: Unable to set log file path.\n")
+
     return
 
-def generateHoneypotPages():
-    # fn.folderpath = input("Select folderpath to generate Honeypot pages ==> ")
+def GenerateHoneypotPages():
     while(True):
         print("1) Generate a honeypot page")
         print("2) Finish")
@@ -87,21 +102,25 @@ def generateHoneypotPages():
         elif option == 2:
             return
         else:
-            print("Not a valid number!\n")
+            print("ERROR: Not a valid number!\n")
 
-def generateReport(logfile, csv_file):
-    variables_list = fn.parse_log_file(logfile)
-    fn.write_to_csv(variables_list, csv_file)
-    print(f"Data successfully written to {csv_file}")
+def GenerateReport(logFile, CSVfile):
+    logFilePath = logFile + "/honeypot.log"
+    try:
+        if fn.server == "Apache":
+            fn.ApacheGenerateReport(logFilePath, CSVfile)
+        elif fn.server == "Nginx":
+            fn.NginxGenerateReport(logFilePath, CSVfile)
+    except:
+        print("An error has occured, unable to generate report file.")
 
 if __name__ == "__main__":
     title = pyfiglet.figlet_format("Beauty On a Pot")
     print(title)
-    
-    x = 1
-    while (x != 0):
+
+    while True:
         print("Selected web server environment: " + fn.server)
-        print("Selected log filepath: " + fn.logfile)
+        print("Selected log file directory: " + fn.logfile)
         print("Generate the honeypot webpages by configuring the correct settings in the options:")
         print("1) Specify server environment")
         print("2) Specify logs filepath")
@@ -111,26 +130,35 @@ if __name__ == "__main__":
         
         print("\nSelect an option:")
         option = int(input("==> "))
+        print()
 
         if option == 1:
             setServer()
         elif option == 2:
-            setLogfile() 
+            setLogFolder()
         elif option == 3:
-            generateHoneypotPages()
-            x = 0
+            # Ensure both logfile and server are selected.
+            if (fn.logfile != "Not selected") and (fn.server != "Not selected"):
+                GenerateHoneypotPages()
+            else:
+                print("ERROR: Web server / Log file not selected. Please ensure both are selected.\n")
         elif option == 4:
-            csv_file = input("Please input the desired location for the report file to be generated.")
-            generateReport(fn.logfile, csv_file)
+            # Check if web serer & log file path is selected
+            if (fn.server == "Not selected") or (fn.logfile == "Not selected"):
+                print("ERROR: Web server / log file not selected. Please select web server/log file.\n")
+                continue
+            # Check if log file is selected
+            csv_file = input("Please input the desired location for the report file to be generated:")
+            print()
 
-            x = 0
+            GenerateReport(fn.logfile, csv_file)
+
         elif option == 5:
-            x = 0
+            break
         else:
-            print("Not a valid option, please enter a number between 1 and 5.\n")
-        
-        if (x == 0):
-            print("Goodbye")
+            print("ERROR: Not a valid option, please enter a number between 1 and 5.\n")
+
+    print("Goodbye")
 
          
       

@@ -171,8 +171,8 @@ def NginxLoggingConfig():
     insertConsole(f"Server {server} restarted!")
     return None
 
-# To generate report file
-def parse_log_file(log_file):
+# To generate report file for Apache
+def ApacheLogParser(log_file, csv_file):
     with open(log_file, 'r') as file:
         log_data = file.read()
 
@@ -198,7 +198,18 @@ def parse_log_file(log_file):
 
         variables_list.append(filtered_variables)
 
-    return variables_list
+    # Create the directory if it doesn't exist
+    directory = os.path.dirname(csv_file)
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
+    with open(csv_file, 'w', newline='') as file:
+        writer = csv.writer(file)
+        # Add headers to the CSV file
+        writer.writerow(["Timestamp", "Src IP and Port", "Dest IP and Port", "Request headers", "Type of attack"])
+
+        for variables in variables_list:
+            writer.writerow(variables)
 
 def analyze_attack_type(section_c):
     sql_keywords = ['insert', 'select', 'from', 'update', 'delete']
@@ -211,11 +222,20 @@ def analyze_attack_type(section_c):
     else:
         return 'Unknown'
 
-def write_to_csv(variables_list, csv_file):
-    with open(csv_file, 'w', newline='') as file:
-        writer = csv.writer(file)
-        # Add headers to the CSV file
-        writer.writerow(["Timestamp", "Src IP and Port", "Dest IP and Port", "Request headers", "Type of attack"])
+# To generate report file for Apache
+def ApacheGenerateReport(logFile, CSVfile):
+    try:
+        if not os.path.isfile(logFile):
+            print(f"{logFile} not found.")
+            return
 
-        for variables in variables_list:
-            writer.writerow(variables)
+        ApacheLogParser(logFile, CSVfile)
+        print(f"Data successfully written to {CSVfile}")
+
+    except:
+        print("Unable to generate report.")
+        insertConsole("Unable to generate report.")
+
+# To generate report file for nginx
+def NginxGenerateReport(logFile, CSVfile):
+    return 
