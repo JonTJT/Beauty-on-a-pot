@@ -6,10 +6,15 @@ from bs4 import BeautifulSoup
 from tkinter.constants import DISABLED, NORMAL, END
 import re
 import csv
-from gui import insertConsole
 
 server = "Not selected"
 logfile = "Not selected"
+textconsole = None
+
+def insertConsole(text):
+    textconsole["state"] = NORMAL
+    textconsole.insert(END, text + "\n")
+    textconsole["state"] = DISABLED
 
 # To generate the output files
 def generateOutputFile(template, output, sourceFile=None):

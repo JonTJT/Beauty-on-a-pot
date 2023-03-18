@@ -29,8 +29,8 @@ def generate():
 
     try:
         if not os.path.exists(fn.logfile):
-            print("No input found")
-            insertConsole("ERROR: Directory does not exist.")
+            print("ERROR: Directory does not exist for Logfile.")
+            insertConsole("ERROR: Directory does not exist for Logfile.")
             return
     except IOError:
         print("ERROR: Unable to set logfile path.")
@@ -102,7 +102,7 @@ if __name__ == "__main__":
     textconsole = tk.Text(root)
     textconsole.place(relwidth=0.9, relheight=0.4, rely=0.59, relx=0.05)
     textconsole["state"] = DISABLED
-    # fn.textconsole = textconsole
+    fn.textconsole = textconsole
 
     # server = OptionMenu()
     serverlbl = ttk.Label(topLeftFrame,text="Select Web Server:",font=('Courier',13,'bold'))
