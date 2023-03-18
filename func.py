@@ -13,9 +13,10 @@ logfile = "Not selected"
 textconsole = None
 
 def insertConsole(text):
-    textconsole["state"] = NORMAL
-    textconsole.insert(END, text + "\n")
-    textconsole["state"] = DISABLED
+    if textconsole != None:
+        textconsole["state"] = NORMAL
+        textconsole.insert(END, text + "\n")
+        textconsole["state"] = DISABLED
 
 # To generate the output files
 def generateOutputFile(template, output, sourceFile=None):
