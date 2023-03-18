@@ -41,8 +41,6 @@ def generateOutputFile(template, output, sourceFile=None):
         print(consoleReturn)
         insertConsole(consoleReturn)
 
-    return output
-
 # To extract an HTML element
 def extractElement(htmlFilePath, element):
     try:
@@ -113,18 +111,15 @@ def generateHoneypotPage(template, sourceFilePath, outputFile):
         # Get the source template
         templateFile = os.path.join(currentDir, "templates", template)
 
-        # Combine the current directory and the new file name to get the full path of the output file
-        outputFile = os.path.join(currentDir, outputFile)
-
         # Generate output file first based on template file
-        outputfile = generateOutputFile(templateFile, outputFile, sourceFilePath)
+        generateOutputFile(templateFile, outputFile, sourceFilePath)
 
         if sourceFilePath != None:
             # Extract the main element from the template file
             templatemain = extractElement(templateFile, 'main')
 
             # Add main to output file, placed before footer if main is not present.
-            insertOrReplaceElement(outputfile, "main", "header", templatemain)
+            insertOrReplaceElement(outputFile, "main", "header", templatemain)
         
         if template == "AdminLoginPageTemplate.html":
             print(f"The files [{os.path.basename(outputFile)}, login.js, and process_login.php] have been generated. \n\

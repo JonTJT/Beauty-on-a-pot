@@ -63,9 +63,9 @@ def addPage():
     current_folder = os.getcwd()
 
     if type == '1':
-        outputFile = current_folder + "\\AdminLoginHoneypot_" + outputFileName
+        outputFile = current_folder + "/AdminLoginHoneypot_" + outputFileName
     if type == '2':
-        outputFile = current_folder + "\\SearchHoneypot_" + outputFileName
+        outputFile = current_folder + "/SearchHoneypot_" + outputFileName
 
     # Generate honeypot pages
     fn.generateHoneypotPage(template, source, outputFile)
