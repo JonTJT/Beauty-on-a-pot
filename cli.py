@@ -62,7 +62,10 @@ def addPage():
     if type == 2:
         outputFile = root_ext[0] + "_SearchHoneypot" + root_ext[1]
 
+    # Generate honeypot pages
     fn.generateHoneypotPage(template, source, outputFile)
+
+    # Set up logging & restart server
     return
 
 
@@ -71,7 +74,7 @@ def setLogfile():
     print()
     return
 
-def generate():
+def generateHoneypotPages():
     # fn.folderpath = input("Select folderpath to generate Honeypot pages ==> ")
     while(True):
         print("1) Generate a honeypot page")
@@ -86,6 +89,11 @@ def generate():
         else:
             print("Not a valid number!\n")
 
+def generateReport(logfile, csv_file):
+    variables_list = fn.parse_log_file(logfile)
+    fn.write_to_csv(variables_list, csv_file)
+    print(f"Data successfully written to {csv_file}")
+
 if __name__ == "__main__":
     title = pyfiglet.figlet_format("Beauty On a Pot")
     print(title)
@@ -98,23 +106,28 @@ if __name__ == "__main__":
         print("1) Specify server environment")
         print("2) Specify logs filepath")
         print("3) Generate Honeypot Pages")
-        print("4) Exit")
+        print("4) Generate Report")
+        print("5) Exit")
         
         print("\nSelect an option:")
         option = int(input("==> "))
-        print()
 
         if option == 1:
             setServer()
         elif option == 2:
             setLogfile() 
         elif option == 3:
-            generate()
+            generateHoneypotPages()
             x = 0
         elif option == 4:
+            csv_file = input("Please input the desired location for the report file to be generated.")
+            generateReport(fn.logfile, csv_file)
+
+            x = 0
+        elif option == 5:
             x = 0
         else:
-            print("Not a valid number\n")
+            print("Not a valid option, please enter a number between 1 and 5.\n")
         
         if (x == 0):
             print("Goodbye")

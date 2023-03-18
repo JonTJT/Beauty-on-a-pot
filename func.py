@@ -3,8 +3,9 @@
 import os
 import shutil
 from bs4 import BeautifulSoup
-import time
 from tkinter.constants import DISABLED, NORMAL, END
+import re
+import csv
 
 server = "Not selected"
 logfile = "Not selected"
@@ -123,19 +124,6 @@ def generateHoneypotPage(template, sourceFilePath, outputFile):
 
             insertConsole(f"The files [{os.path.basename(outputFile)}, login.js, and process_login.php] have been generated.")
             insertConsole(f"Please remember to edit the file name for {os.path.basename(outputFile)}.")
-            
-            # To remove:
-            print("Setting up logging for Apache...")
-            insertConsole("Setting up logging for Apache...")
-            # time.sleep(2)
-            print("Logging successfully configured. Logging file path has been set to: '/var/log/honeypot.log'")
-            insertConsole("Logging successfully configured. Logging file path has been set to: '/var/log/honeypot.log'")
-            
-            print("Restarting Apache server.... Please wait")
-            insertConsole("Restarting Apache server.... Please wait")
-            # time.sleep(5)
-            print("Server successfully restarted!")
-            insertConsole("Server successfully restarted!")
 
         elif template == "SecretSearchPage.html":
             print(f"The files [{os.path.basename(outputFile)}, search.js, and process_search.php] have been generated. \n\
@@ -144,20 +132,90 @@ def generateHoneypotPage(template, sourceFilePath, outputFile):
             insertConsole(f"The files [{os.path.basename(outputFile)}, search.js, and process_search.php] have been generated.")
             insertConsole(f"Please remember to edit the file name for {os.path.basename(outputFile)}.")
 
-            # To remove:
-            print("Setting up logging for Apache...")
-            insertConsole("Setting up logging for Apache...")
-            # time.sleep(2)
-            print("Logging successfully configured. Logging file path has been set to: '/var/log/honeypot.log'")
-            insertConsole("Logging successfully configured. Logging file path has been set to: '/var/log/honeypot.log'")
-            
-            print("Restarting Apache server.... Please wait")
-            insertConsole("Restarting Apache server.... Please wait")
-            # time.sleep(5)
-            print("Server successfully restarted!")
-            insertConsole("Server successfully restarted!")
+        # To set up logging 
+        print(f"Setting up logging for {server}...")
+        insertConsole(f"Setting up logging for {server}...")
+
+        if server == "Apache":
+            ApacheLoggingConfig()
+        elif server == "Nginx":
+            NginxLoggingConfig()
 
     except IOError:
         consoleReturn = "IO Exception: Unable to generate output honeypot files."
         print(consoleReturn)
         return consoleReturn
+
+#Apache logging config
+def ApacheLoggingConfig():
+    # Insert logging code for apache
+    print("Logging successfully configured. Logging file path has been set to: '/var/log/honeypot.log'")
+    insertConsole("Logging successfully configured. Logging file path has been set to: '/var/log/honeypot.log'")
+    
+    print(f"Restarting {server} server.... Please wait")
+    insertConsole(f"Restarting {server} server.... Please wait")
+    # Restart Apache
+    print(f"Server {server} restarted!")
+    insertConsole(f"Server {server} restarted!")
+    return None
+
+def NginxLoggingConfig():
+    # Insert logging code for nginx
+    print("Logging successfully configured. Logging file path has been set to: '/var/log/honeypot.log'")
+    insertConsole("Logging successfully configured. Logging file path has been set to: '/var/log/honeypot.log'")
+    
+    print(f"Restarting {server} server.... Please wait")
+    insertConsole(f"Restarting {server} server.... Please wait")
+    # Restart Nginx
+    print(f"Server {server} restarted!")
+    insertConsole(f"Server {server} restarted!")
+    return None
+
+# To generate report file
+def parse_log_file(log_file):
+    with open(log_file, 'r') as file:
+        log_data = file.read()
+
+    log_entries = re.split(r'--\w{8}-A--', log_data)[1:]
+    variables_list = []
+
+    for entry in log_entries:
+        variables = entry.strip().split('\n')
+        filtered_variables = [var for var in variables if not var.startswith('--') and var.strip()]
+
+        # Split the first line into 4 sections and remove the second item
+        date, unique_id, src_ip, src_port, dest_ip, dest_port = re.match(r'(\[.+\])\s(\S+)\s(\S+)\s(\S+)\s(\S+)\s(\S+)', filtered_variables[0]).groups()
+        filtered_variables[0:1] = [date, f"{src_ip} {src_port}", f"{dest_ip} {dest_port}"]
+
+        # Concatenate everything from the "--XXXXXXXX-B--" section into one cell
+        concatenated_section_b = ' '.join(filtered_variables[3:])
+        filtered_variables[3:] = [concatenated_section_b]
+
+        # Get the "--XXXXXXXX-C--" section and analyze it
+        section_c = re.search(r'--\w{8}-C--\s*(.+)', entry, re.DOTALL).group(1).strip()
+        attack_type = analyze_attack_type(section_c)
+        filtered_variables.append(attack_type)
+
+        variables_list.append(filtered_variables)
+
+    return variables_list
+
+def analyze_attack_type(section_c):
+    sql_keywords = ['insert', 'select', 'from', 'update', 'delete']
+    xss_keywords = ['<script>', '</script>', 'alert()']
+
+    if any(keyword.lower() in section_c.lower() for keyword in sql_keywords):
+        return 'SQL Injection'
+    elif any(keyword.lower() in section_c.lower() for keyword in xss_keywords):
+        return 'XSS'
+    else:
+        return 'Unknown'
+
+def write_to_csv(variables_list, csv_file):
+    with open(csv_file, 'w', newline='') as file:
+        writer = csv.writer(file)
+        # Add headers to the CSV file
+        writer.writerow(["Timestamp", "Src IP and Port", "Dest IP and Port", "Request headers", "Type of attack"])
+
+        for variables in variables_list:
+            writer.writerow(variables)
