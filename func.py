@@ -286,13 +286,18 @@ def copy_modsecurity_conf():
     dest = "/etc/modsecurity/modsecurity.conf"
     shutil.copyfile(src, dest)
 
-def has_existing_apache_configuration(file_path, unique_strings):
+def has_existing_apache_configuration(file_path, unique_strings, sec_audit_log_path):
     with open(file_path, 'r') as file:
         lines = file.readlines()
 
     for unique_string in unique_strings:
-        if any(unique_string in line for line in lines):
-            return True
+        if unique_string != "SecAuditLog":
+            if any(unique_string in line for line in lines):
+                return True
+        else:
+            sec_audit_log_line = f"SecAuditLog {sec_audit_log_path}"
+            if sec_audit_log_line in lines:
+                return True
 
     return False
 
@@ -323,8 +328,8 @@ SecAuditLog {sec_audit_log_path}
         "SecAuditLog"
     ]
 
-    if has_existing_apache_configuration(honeypot_rules_path, unique_strings):
-        print("The honeypot_rules.conf file has already been modified. Skipping the configuration process.")
+    if has_existing_apache_configuration(honeypot_rules_path, unique_strings, sec_audit_log_path + "/honeypot.log"):
+        print("The honeypot_rules.conf file has already been modified with the same log path. Skipping the configuration process.")
         return
 
     with open(honeypot_rules_path, 'w') as file:
