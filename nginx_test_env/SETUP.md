@@ -21,7 +21,7 @@ For enhanced logging to grab all request headers with Lua, certain modules are i
    `sudo ./nginxconf.sh`<br>
 7. **(Optional)** Alternatively, if you want to use existing files, please copy them into the */usr/local/openresty/nginx/html/* directory.<br>
    `cp *.php /usr/local/openresty/nginx/html/`<br>
-8. **(Optional)** Run *shortcut.sh* to make a *hptlog* alias to print the honeypot logs.
+8. **(Optional)** Run *shortcut.sh* to make a *hptlog* alias to print the honeypot logs. <br>
    `sudo ./shortcut.sh`<br>
    `hptlog`
 
