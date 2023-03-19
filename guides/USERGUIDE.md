@@ -33,7 +33,7 @@ On the linux machine:
    ```sudo pip install -r requirements.txt```
 4. Copy over the `template` and `src` folders, as well as the `cli.py`, `func.py` and `gui.py` files over to your html directory that contains all the files in your website.<br>
    ![File(s) to copy over](/guides/images/copied_files.png)
-5. Once the files are copied over, run either the `cli.py` file or the `gui.py` file to start Beauty-on-a-pot. Take note that the python scripts should be ran with root permissions using the `sudo` command. Refer to the respective headers below on how to use the [CLI](#CLI) or [GUI](/guides/USERGUIDE#GUI) of Beauty-on-a-pot. It is recommended to use the `gui.py` script instead for a graphical user interface.
+5. Once the files are copied over, run either the `cli.py` file or the `gui.py` file to start Beauty-on-a-pot. Take note that the python scripts should be ran with root permissions using the `sudo` command. Refer to the respective headers below on how to use the [CLI](#CLI) or [GUI](#GUI) of Beauty-on-a-pot. It is recommended to use the `gui.py` script instead for a graphical user interface.
 
 ### CLI
 ---
