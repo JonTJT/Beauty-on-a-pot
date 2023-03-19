@@ -413,7 +413,6 @@ def nginx_log_setup(log_path):
 
     # Set the path to the Nginx config file
     CONFIG_FILE = os.getcwd() + "/../conf/nginx.conf"
-    CONFIG_FILE = '/usr/local/openresty/nginx/conf/nginx.conf'
 
     # Define the string to insert for log_format
     LOG_FORMAT_STRING = '''    log_format log_req escape=none '[$time_local] $remote_addr $remote_port $server_addr $server_port'\n    '\\n$request$req_header$request_body\\n|\\n';\n\n'''
@@ -461,9 +460,10 @@ def nginx_log_setup(log_path):
         exit(0)
 
     # Create a backup nginx.conf file
-    if not os.path.isfile('/usr/local/openresty/nginx/conf/nginx.conf.backup'):
-        os.system('cp /usr/local/openresty/nginx/conf/nginx.conf /usr/local/openresty/nginx/conf/nginx.conf.backup')
-        print('Backup created as /usr/local/openresty/nginx/conf/nginx.conf.backup.')
+    BACKUP_FILE = CONFIG_FILE + ".backup"
+    if not os.path.isfile(BACKUP_FILE):
+        os.system('cp', CONFIG_FILE, BACKUP_FILE)
+        print('Backup created as ' + BACKUP_FILE + "." )
 
      # Use awk to find the http block and insert the strings
     with open(CONFIG_FILE, 'r') as f:
