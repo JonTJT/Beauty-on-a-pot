@@ -462,7 +462,7 @@ def nginx_log_setup(log_path):
     # Create a backup nginx.conf file
     BACKUP_FILE = CONFIG_FILE + ".backup"
     if not os.path.isfile(BACKUP_FILE):
-        os.system('cp', CONFIG_FILE, BACKUP_FILE)
+        os.system("cp " + CONFIG_FILE + " " + BACKUP_FILE)
         print('Backup created as ' + BACKUP_FILE + "." )
 
      # Use awk to find the http block and insert the strings
@@ -474,20 +474,16 @@ def nginx_log_setup(log_path):
         return
 
     with open(CONFIG_FILE + '.tmp', 'w') as f:
-        in_http_block = False
-        in_server_block = False
         in_location_block = False
         http_write = False
         server_write = False
         location_write = False
         for line in lines:
             if 'http {' in line and not http_write:
-                in_http_block = True
                 http_write = True
                 f.write(line)
                 f.write(LOG_FORMAT_STRING)
             elif 'server {' in line and not server_write:
-                in_server_block = True
                 server_write = True
                 f.write(line)
                 f.write(LUA_STRING)
@@ -499,8 +495,6 @@ def nginx_log_setup(log_path):
                 f.write(line)
                 f.write(LOCATION_STRING)
                 location_write = True
-            # elif in_http_block or in_server_block or in_location_block:
-            #     pass
             else:
                 f.write(line)
 
