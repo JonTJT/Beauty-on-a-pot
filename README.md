@@ -4,3 +4,6 @@ Beauty on a pot is a high interaction honeypot that will provide an interface fo
 Beauty on a pot aims to improve on existing solutions by easing the process of creating a honeypot. This is achieved by automatically generating honeypot pages on existing web applications, which existing solutions do not provide. 
 
 To test our solution, our team will be creating some web applications using different web servers such as Apache and Nginx before using the tool on them to ensure that the tool will be able to automatically create honeypot pages that are automatically configured and deployed on these web servers, and subsequently ensuring that the malicious activity on our honeypot pages are logged correctly and accurately in our log files. 
+
+# How to use:
+Please refer to the [User_Guide](/guides/USERGUIDE.md)
