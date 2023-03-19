@@ -1,0 +1,49 @@
+.register_process_header {
+    margin: 2em;
+}
+
+.register_process_main {
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+}
+
+.register_process_btn {
+    margin-top: 1em;
+}
+
+h2 {
+    text-decoration: underline;
+}
+
+article img {
+    border-color: black;
+    border-style: double;
+}
+
+.img-popup {
+    position: absolute;
+    z-index: 1;
+}
+
+.img-popup img {
+    max-width: 70%;
+}
+
+figure {
+    display: inline-block;
+}
+
+figcaption {
+    display: block;
+    text-align: center;
+    color: gray;
+    font-style: italic;
+}
+
+footer {
+    border-top: 2px solid grey;
+    padding-top: 1em;
+    text-align: center;
+    font-style: italic;
+    font-size: 12px;
+}
