@@ -54,6 +54,7 @@ On the linux machine:
    ![CLI generated report](/guides/images/cli_4.1.png)
 
 ### GUI
+---
 1. After running the `gui.py`, you should be greeted with a user interface and some options to select:  <br>
    ![GUI main page](/guides/images/gui_main.png)
 2. First, specify the server environment depending on whether your webserver is an Apache or and Nginx one. <br>
